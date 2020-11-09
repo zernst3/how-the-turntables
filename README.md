@@ -1,6 +1,7 @@
-<<<<<<< HEAD
+Agne has been here
+
 Dusan waz ure
-=======
+
 Zachary Ernst
 
 # Boilermaker
