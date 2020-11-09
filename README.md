@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 Agne has been here
-=======
 Zachary Ernst
->>>>>>> b135854b60487b8269590837a9b302bb046b4ec1
 
 # Boilermaker
 
