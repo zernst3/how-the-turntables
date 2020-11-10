@@ -13,7 +13,7 @@ export const fetchAlbum = id => ({
   band: 'U2',
   name: 'Joshua Three',
   imageUrl:
-    'https://en.wikipedia.org/wiki/The_Joshua_Tree#/media/File:The_Joshua_Tree.png'
+    'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650'
 })
 
 // return async (dispatch) => {
