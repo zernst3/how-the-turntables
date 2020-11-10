@@ -1,5 +1,6 @@
 import React from 'react'
 import {fetchAlbum} from '../singleAlbum'
+import {connect} from 'react-redux'
 
 export class SingleAlbum extends React.Component {
   componentDidMount() {
@@ -31,4 +32,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default SingleAlbum
+export default connect(mapStateToProps, mapDispatchToProps)(SingleAlbum)
