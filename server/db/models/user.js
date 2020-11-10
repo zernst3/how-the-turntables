@@ -3,10 +3,29 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  firstName: {
+    type: Sequelize.STRING,
+  },
+  lastName: {
+    type: Sequelize.STRING,
+  },
+  fullName: {
+    type: Sequelize.STRING,
+  },
+  userName: {
+    type: Sequelize.STRING,
+  },
   email: {
     type: Sequelize.STRING,
-    unique: true,
-    allowNull: false
+      allowNull: false,
+      unique: true,
+      validate: {
+          notEmpty: true,
+          isEmail: true,
+      }
+  },
+  phoneNumber: {
+    type: Sequelize.INTEGER,
   },
   password: {
     type: Sequelize.STRING,
@@ -25,9 +44,109 @@ const User = db.define('user', {
     }
   },
   googleId: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: 'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
+  },
+  billingAddress: {
+    firstName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    middleName: {
+      type: Sequelize.STRING,
+    },
+    street: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    country: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    zipCode: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+  },
+  creditCard: {
+    firstName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    middleName: {
+      type: Sequelize.STRING,
+    },
+    creditCardNumber: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    expirationMonth: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    expirationYear: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    cvv: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      }
+  },
+  shippingAddress: {
+    firstName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    middleName: {
+      type: Sequelize.STRING,
+    },
+    street: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    country: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    zipCode: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+  } 
   }
-})
+)
 
 module.exports = User
 
