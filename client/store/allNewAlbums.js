@@ -93,6 +93,15 @@ export const fetchNewAlbums = () => {
   }
 }
 
+// return async (dispatch) => {
+//   try {
+//     const { data } = await Axios.get(`/api/`)
+//     dispatch(setAlbums(data))
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
 const initialState = []
 
 export default function albumsReducer(state = initialState, action) {

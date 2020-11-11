@@ -23,7 +23,7 @@ export const fetchAlbum = id => {
 
 // return async (dispatch) => {
 //   try {
-//     const { data } = await Axios.get(`/api/album/${id}`)
+//     const { data } = await Axios.get(`/api/${id}`)
 //     dispatch(setAlbum(data))
 //   } catch (error) {
 //     console.log(error)
