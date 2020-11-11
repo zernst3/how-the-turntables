@@ -3,40 +3,52 @@ const {green, red} = require('chalk')
 
 const Products = require('../server/db/models/product')
 const Users = require('../server/db/models/user')
+const Orders = require('../server/db/models/order')
 
 const productsForPostico = [
   {
     title: 'Thriller',
-    songList: 'Toiahwewewf,wefw',
+    songList: 'P.Y.T, Thriller, Beat It',
     artistName: 'Michael Jackson',
     releaseYear: 1982,
     imageUrl:
       'https://i5.walmartimages.com/asr/ac1953e5-4676-4ede-b0ff-0e3ad92818a3_1.915ca3bc461982df19a86d4acd26228a.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff',
-    price: 50,
+    price: 5000,
     category: 'Pop',
     inventory: 148
   },
   {
     title: 'Ray of Light',
-    songList: 'Erotic, ray of Light, Time goes By',
+    songList: 'Erotic, Ray of Light, Time Goes By',
     artistName: 'Madonna',
     releaseYear: 1988,
     imageUrl:
       'https://images-na.ssl-images-amazon.com/images/I/7128tY0BnEL._SY450_.jpg',
-    price: 36,
+    price: 3600,
     category: 'Pop',
     inventory: 77
   },
   {
     title: 'Rumours',
-    songList: 'Dreams, Never going back',
+    songList: 'Dreams, Never Going Back Again, The Chain',
     artistName: 'Fleetwood Mac',
     releaseYear: 1977,
     imageUrl:
       'https://images-na.ssl-images-amazon.com/images/I/71BekDJBb3L._SY355_.jpg',
-    price: 88,
+    price: 8800,
     category: 'Pop Rock',
     inventory: 28
+  },
+  {
+    title: 'Back in Black',
+    songList: 'Hells Bells, Shoot To Thrill, Back in Black',
+    artistName: 'ACDC',
+    releaseYear: 1980,
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/ACDC_Back_in_Black.png/1200px-ACDC_Back_in_Black.png',
+    price: 10000,
+    category: 'Rock and Roll',
+    inventory: 4
   }
 ]
 
@@ -48,7 +60,7 @@ const usersForPostico = [
     userName: 'boustanip718',
     email: 'boustanip718@gmail.com',
     phoneNumber: 6584,
-    password: 'kstlsihc',
+    password: 'ACDCLover98',
     salt: 'okaodudnwod',
     googleId: 'boustanip718',
     imageUrl:
@@ -61,7 +73,7 @@ const usersForPostico = [
     userName: 'agneur',
     email: 'agne.urbaityte@gmail.com',
     phoneNumber: 23344,
-    password: 'vjbdfbn',
+    password: 'password',
     salt: 'lkndflknfd',
     googleId: 'agne.urbaityte',
     imageUrl:
@@ -72,13 +84,56 @@ const usersForPostico = [
     lastName: 'Scarnewman',
     fullName: 'Bobby Scarnewman',
     userName: 'iKilledMufasa',
-    email: 'thepeopleschamp@gmail.com',
+    email: 'thepeopleschamp@yahoo.com',
     phoneNumber: 33888,
     password: 'captainfalcon',
     salt: 'isthegoat',
     googleId: 'bobby.scar',
     imageUrl:
       'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
+  },
+  {
+    firstName: 'Joseph',
+    lastName: 'Marquez',
+    fullName: 'Joseph Marquez',
+    userName: 'C9 Mango',
+    email: 'scorpionmaster29@hotmail.com',
+    phoneNumber: 33888,
+    password: 'falcobeatsfox',
+    salt: 'myNameIsJoshua', // is this provided for us????
+    googleId: 'Mango',
+    imageUrl:
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
+  }
+]
+
+const ordersForPostico = [
+  {
+    status: 'Current Cart',
+    userId: 1
+  },
+  {
+    status: 'Current Cart',
+    userId: 2
+  },
+  {
+    status: 'Old Order',
+    deliveryStatus: 'Pending',
+    userId: 1
+  },
+  {
+    status: 'Old Order',
+    deliveryStatus: 'Delivered',
+    userId: 3
+  },
+  {
+    status: 'Old Order',
+    deliveryStatus: 'Delivered',
+    userId: 3
+  },
+  {
+    status: 'Current Cart',
+    userId: 4
   }
 ]
 
@@ -95,6 +150,12 @@ const seed = async () => {
     await Promise.all(
       usersForPostico.map(user => {
         return Users.create(user)
+      })
+    )
+
+    await Promise.all(
+      ordersForPostico.map(order => {
+        return Orders.create(order)
       })
     )
 
