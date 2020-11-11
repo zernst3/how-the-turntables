@@ -20,6 +20,9 @@ router.post('/login', async (req, res, next) => {
 })
 
 router.post('/signup', async (req, res, next) => {
+  if (req.body.password !== req.body.confirmPassword) {
+    return res.status(401).send('Passwords do not match')
+  }
   try {
     const user = await User.create(req.body)
     req.login(user, err => (err ? next(err) : res.json(user)))

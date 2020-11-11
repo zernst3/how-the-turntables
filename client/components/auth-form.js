@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import './auth-form.css'
 
 /**
  * COMPONENT
@@ -10,26 +11,48 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+    <div id="auth-form-container">
+      <div id="auth-form-content">
+        <img
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+          alt="empty person photo"
+        />
+        <form onSubmit={handleSubmit} name={name}>
+          {name === 'signup' && (
+            <div>
+              <label htmlFor="username">
+                <small>Username</small>
+              </label>
+              <input name="username" type="text" />
+            </div>
+          )}
+          <div>
+            <label htmlFor="email">
+              <small>Email</small>
+            </label>
+            <input name="email" type="text" />
+          </div>
+          <div>
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <input name="password" type="password" />
+          </div>
+          {name === 'signup' && (
+            <div>
+              <label htmlFor="confirmPassword">
+                <small>Confirm Password</small>
+              </label>
+              <input name="confirmPassword" type="password" />
+            </div>
+          )}
+          <div>
+            <button type="submit">{displayName}</button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+        <a href="/auth/google">Login with Google</a>
+      </div>
     </div>
   )
 }
@@ -62,9 +85,14 @@ const mapDispatch = dispatch => {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
+      const username =
+        (evt.target.username && evt.target.username.value) || undefined
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const confirmPassword =
+        (evt.target.confirmPassword && evt.target.confirmPassword.value) ||
+        undefined
+      dispatch(auth(username, email, password, confirmPassword, formName))
     }
   }
 }
