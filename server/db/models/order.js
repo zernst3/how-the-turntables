@@ -11,7 +11,7 @@ const Order = db.define('order', {
     defaultValue: NOW
   },
   deliveryStatus: {
-    type: Sequelize.ENUM,
+    type: Sequelize.STRING,
     defaultValue: 'Pending'
   },
   overallPrice: {
