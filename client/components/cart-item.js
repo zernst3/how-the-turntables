@@ -1,7 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const CartItem = ({title, artistName, imageUrl, price, amount}) => {
+const CartItem = ({
+  id,
+  title,
+  artistName,
+  imageUrl,
+  price,
+  amount,
+  removeItem,
+}) => {
   return (
     <div>
       <h3>
@@ -14,7 +22,21 @@ const CartItem = ({title, artistName, imageUrl, price, amount}) => {
         Price: ${(price / 100).toFixed(2)} - Total: $
         {((price * amount) / 100).toFixed(2)}
       </h3>
-      <input type="number" value={amount} />
+      <h3>Quantity:</h3>
+      <input
+        type="number"
+        defaultValue={amount}
+        onChange={(evt) => {
+          console.log('Amount changed: ', evt.target.value)
+          removeItem(id)
+        }}
+      />
+      <button
+        type="submit"
+        onClick={() => console.log('Remove item from cart')}
+      >
+        Delete
+      </button>
     </div>
   )
 }

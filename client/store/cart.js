@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import store from './index'
 
 /**
  * ACTION TYPES
@@ -25,6 +26,19 @@ export const getCart = () => async (dispatch) => {
     dispatch(setCart(res.data))
   } catch (err) {
     coinsole.error(err)
+  }
+}
+
+export const removeItemFromCart = (itemId) => {
+  return async (dispatch) => {
+    try {
+      // await axios.delete(`/api/cart/${itemId}`)
+      dispatch(
+        setCart(store.getState().cart.filter((item) => item.id !== itemId))
+      )
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

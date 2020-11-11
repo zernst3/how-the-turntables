@@ -1,13 +1,23 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getCart} from '../store'
+import {getCart, removeItem} from '../store'
 import CartItem from './cart-item'
 
 /**
  * COMPONENT
  */
 class Cart extends React.Component {
+  constructor() {
+    super()
+    this.removeItem = this.removeItem.bind(this)
+  }
+
   componentDidMount() {
+    this.props.getCart()
+  }
+
+  async removeItem(id) {
+    await this.props.removeItemFromCart(id)
     this.props.getCart()
   }
 
@@ -19,11 +29,13 @@ class Cart extends React.Component {
           return (
             <CartItem
               key={idx}
+              id={item.id}
               title={item.title}
               artistName={item.artistName}
               imageUrl={item.imageUrl}
               price={item.price}
               amount={item.amount}
+              removeItem={this.removeItem}
             />
           )
         })}
@@ -47,6 +59,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getCart: () => dispatch(getCart()),
+    removeItem: (id) => dispatch(removeItem(id)),
   }
 }
 
