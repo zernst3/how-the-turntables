@@ -3,10 +3,31 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  // For Google Sign-in
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  fullName: {
+    type: Sequelize.STRING
+  },
+
+  userName: {
+    type: Sequelize.STRING
+  },
   email: {
     type: Sequelize.STRING,
+    allowNull: false,
     unique: true,
-    allowNull: false
+    validate: {
+      notEmpty: true,
+      isEmail: true
+    }
+  },
+  phoneNumber: {
+    type: Sequelize.INTEGER
   },
   password: {
     type: Sequelize.STRING,
@@ -26,6 +47,11 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
   }
 })
 

@@ -1,8 +1,8 @@
-const db = require('../server/db')
+const {db} = require('./server/db')
 const {green, red} = require('chalk')
 
-const Products = require('../server/db/models/product')
-const Users = require('../server/db/models/user')
+const Products = require('./server/db/index').Product
+const Users = require('./server/db/index').User
 
 const productsForPostico = [
   {
@@ -47,7 +47,7 @@ const usersForPostico = [
     fullName: 'Peter Boustani',
     userName: 'boustanip718',
     email: 'boustanip718@gmail.com',
-    phoneNumber: 6584,
+    phoneNumber: 6584611568,
     password: 'kstlsihc',
     salt: 'okaodudnwod',
     googleId: 'boustanip718',
@@ -60,7 +60,7 @@ const usersForPostico = [
     fullName: 'Agne Urbaityte',
     userName: 'agneur',
     email: 'agne.urbaityte@gmail.com',
-    phoneNumber: 23344,
+    phoneNumber: 1112223344,
     password: 'vjbdfbn',
     salt: 'lkndflknfd',
     googleId: 'agne.urbaityte',
@@ -73,7 +73,7 @@ const usersForPostico = [
     fullName: 'Bobby Scarnewman',
     userName: 'iKilledMufasa',
     email: 'thepeopleschamp@gmail.com',
-    phoneNumber: 33888,
+    phoneNumber: 3336668888,
     password: 'captainfalcon',
     salt: 'isthegoat',
     googleId: 'bobby.scar',
@@ -85,24 +85,9 @@ const usersForPostico = [
 const seed = async () => {
   try {
     await db.sync({force: true})
-
-    await Promise.all(
-      productsForPostico.map(product => {
-        return Products.create(product)
-      })
+    return Products.bulkCreate(productsForPostico).then(() =>
+      Users.bulkCreate(usersForPostico)
     )
-
-    await Promise.all(
-      usersForPostico.map(user => {
-        return Users.create(user)
-      })
-    )
-
-    // try {
-    //   await db.sync({force: true})
-    //   return Products.bulkCreate(productsForPostico).then(() =>
-    //     Users.bulkCreate(usersForPostico)
-    //   )
   } catch (err) {
     console.log(red(err))
   }
@@ -125,47 +110,92 @@ if (require.main === module) {
     })
 }
 
-// 'use strict'
+// billingAddress: {
+//   firstName: 'Peter',
+//   lastName: 'Boustani',
+//   middleName: null,
+//   street: '123 Rockefeller',
+//   city: 'New York',
+//   state: 'New York',
+//   country: 'USA',
+//   zipCode: 12345,
+// },
+// creditCard: {
+//   firstName: 'Peter',
+//   lastName: 'Boustani',
+//   middleName: null,
+//   creditCardNumber: 123456789,
+//   expirationMonth: 02,
+//   expirationYear: 2028,
+//   cvv: 789,
+// },
+// shippingAddress: {
+//   firstName: 'Peter',
+//   lastName: 'Boustani',
+//   middleName: null,
+//   street: '123 Rockefeller',
+//   city: 'New York',
+//   state: 'New York',
+//   country: 'USA',
+//   zipCode: 12345,
+// },
 
-// const db = require('../server/db')
-// const {User} = require('../server/db/models')
+// billingAddress: {
+//   firstName: 'Agne',
+//   lastName: 'Urbaityte',
+//   middleName: 'Georgia',
+//   street: '122-86',
+//   city: 'Brooklyn',
+//   state: 'New York',
+//   country: 'USA',
+//   zipCode: 99021,
+// },
+// creditCard: {
+//   firstName: 'Agne',
+//   lastName: 'Urbaityte',
+//   middleName: 'Georgia',
+//   creditCardNumber: 3010554694321198,
+//   expirationMonth: 04,
+//   expirationYear: 2027,
+//   cvv: 645,
+// },
+// shippingAddress: {
+//   firstName: 'Agne',
+//   lastName: 'Urbaityte',
+//   middleName: 'Georgia',
+//   street: '122-86',
+//   city: 'Brooklyn',
+//   state: 'New York',
+//   country: 'USA',
+//   zipCode: 99021,
+// },
 
-// async function seed() {
-//   await db.sync({force: true})
-//   console.log('db synced!')
-
-//   const users = await Promise.all([
-//     User.create({email: 'cody@email.com', password: '123'}),
-//     User.create({email: 'murphy@email.com', password: '123'})
-//   ])
-
-//   console.log(`seeded ${users.length} users`)
-//   console.log(`seeded successfully`)
-// }
-
-// // We've separated the `seed` function from the `runSeed` function.
-// // This way we can isolate the error handling and exit trapping.
-// // The `seed` function is concerned only with modifying the database.
-// async function runSeed() {
-//   console.log('seeding...')
-//   try {
-//     await seed()
-//   } catch (err) {
-//     console.error(err)
-//     process.exitCode = 1
-//   } finally {
-//     console.log('closing db connection')
-//     await db.close()
-//     console.log('db connection closed')
-//   }
-// }
-
-// // Execute the `seed` function, IF we ran this module directly (`node seed`).
-// // `Async` functions always return a promise, so we can use `catch` to handle
-// // any errors that might occur inside of `seed`.
-// if (module === require.main) {
-//   runSeed()
-// }
-
-// // we export the seed function for testing purposes (see `./seed.spec.js`)
-// module.exports = seed
+// billingAddress: {
+//   firstName: 'Bobby',
+//   lastName: 'Scarnewman',
+//   middleName: 'Dude',
+//   street: '434',
+//   city: 'Norwalk',
+//   state: 'Calfornia',
+//   country: 'USA',
+//   zipCode: 33233,
+// },
+// creditCard: {
+//   firstName: 'Sophie',
+//   lastName: 'Scarnewman',
+//   middleName: 'The Third',
+//   creditCardNumber: 5582930499990000,
+//   expirationMonth: 11,
+//   expirationYear: 2024,
+//   cvv: 991,
+// },
+// shippingAddress: {
+//   firstName: 'Bobby',
+//   lastName: 'Scarnewman',
+//   middleName: 'Dude',
+//   street: '434',
+//   city: 'Norwalk',
+//   state: 'California',
+//   country: 'USA',
+//   zipCode: 33233,
+// },
