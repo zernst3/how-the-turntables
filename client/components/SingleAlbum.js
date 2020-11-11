@@ -5,18 +5,18 @@ import {connect} from 'react-redux'
 export class SingleAlbum extends React.Component {
   componentDidMount() {
     this.props.fetchAlbum(1)
+    //this.props.match.params.id
   }
   render() {
-    const {id, name, band, imageUrl} = this.props.album
-
-    return (
-      <div className="singleAlbum" key={id}>
-        <h4>Id: {id}</h4>
-        <h2>{band}</h2>
-        <h2>{name}</h2>
-        <img>{imageUrl}</img>
-      </div>
-    ) //return ende
+    //  const {id, name, band, imageUrl} = this.props.album
+    // <h4>Id: {id}</h4>
+    // <h2>{band}</h2>
+    // <h2>{name}</h2>
+    // <img>{imageUrl}</img>
+    // <div className="singleAlbum" key={id}>
+    //   </div>
+    console.log('SOMETNIHG\n\n')
+    return <h1>HELLO</h1> //return ende
   } //render ende
 } //class ende
 

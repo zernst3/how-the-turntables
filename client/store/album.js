@@ -8,13 +8,17 @@ export const setAlbum = album => ({
   album
 })
 
-export const fetchAlbum = id => ({
-  id: 1,
-  band: 'U2',
-  name: 'Joshua Three',
-  imageUrl:
-    'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650'
-})
+export const fetchAlbum = id => {
+  dispatch(
+    setAlbum({
+      id: 1,
+      band: 'U2',
+      name: 'Joshua Three',
+      imageUrl:
+        'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650'
+    })
+  ) //end dispatch
+} //end so called thunk
 
 // return async (dispatch) => {
 //   try {
