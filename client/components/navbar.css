@@ -1,0 +1,27 @@
+#navbar-container {
+  background-color: black;
+  color: white;
+  padding: 0px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100vw;
+}
+
+#navbar-container h1 {
+  display: flex;
+}
+
+#navbar-container nav {
+  display: flex;
+}
+
+#navbar-container a {
+  color: white;
+  text-decoration: none;
+}
+
+#navbar-container nav a {
+  font-size: 1.1em;
+}
