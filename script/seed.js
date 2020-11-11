@@ -1,8 +1,8 @@
 const db = require('../server/db')
 const {green, red} = require('chalk')
 
-const Products = require('../server/db/index')
-const Users = require('../server/db/index')
+const Products = require('../server/db/models/product')
+const Users = require('../server/db/models/user')
 
 const productsForPostico = [
   {
@@ -47,7 +47,7 @@ const usersForPostico = [
     fullName: 'Peter Boustani',
     userName: 'boustanip718',
     email: 'boustanip718@gmail.com',
-    phoneNumber: 6584611568,
+    phoneNumber: 6584,
     password: 'kstlsihc',
     salt: 'okaodudnwod',
     googleId: 'boustanip718',
@@ -60,7 +60,7 @@ const usersForPostico = [
     fullName: 'Agne Urbaityte',
     userName: 'agneur',
     email: 'agne.urbaityte@gmail.com',
-    phoneNumber: 1112223344,
+    phoneNumber: 23344,
     password: 'vjbdfbn',
     salt: 'lkndflknfd',
     googleId: 'agne.urbaityte',
@@ -73,7 +73,7 @@ const usersForPostico = [
     fullName: 'Bobby Scarnewman',
     userName: 'iKilledMufasa',
     email: 'thepeopleschamp@gmail.com',
-    phoneNumber: 3336668888,
+    phoneNumber: 33888,
     password: 'captainfalcon',
     salt: 'isthegoat',
     googleId: 'bobby.scar',
@@ -85,9 +85,24 @@ const usersForPostico = [
 const seed = async () => {
   try {
     await db.sync({force: true})
-    return Products.bulkCreate(productsForPostico).then(() =>
-      Users.bulkCreate(usersForPostico)
+
+    await Promise.all(
+      productsForPostico.map(product => {
+        return Products.create(product)
+      })
     )
+
+    await Promise.all(
+      usersForPostico.map(user => {
+        return Users.create(user)
+      })
+    )
+
+    // try {
+    //   await db.sync({force: true})
+    //   return Products.bulkCreate(productsForPostico).then(() =>
+    //     Users.bulkCreate(usersForPostico)
+    //   )
   } catch (err) {
     console.log(red(err))
   }

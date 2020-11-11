@@ -11,15 +11,6 @@ const Cart = require('./cart')
  *    BlogPost.belongsTo(User)
  */
 
-// User.belongsToMany(Product, {through: Cart})
-// Product.belongsToMany(User, {through: Cart})
-
-// Order.belongsTo(User)
-// User.hasMany(Order)
-
-// Order.hasMany(Product)
-// Product.belongsToMany(Order)
-
 Order.belongsTo(User)
 User.hasMany(Order)
 
