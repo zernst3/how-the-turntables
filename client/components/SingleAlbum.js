@@ -1,5 +1,5 @@
 import React from 'react'
-import {fetchAlbum} from '../singleAlbum'
+import {fetchAlbum} from '../store/album'
 import {connect} from 'react-redux'
 
 export class SingleAlbum extends React.Component {
@@ -8,15 +8,19 @@ export class SingleAlbum extends React.Component {
     //this.props.match.params.id
   }
   render() {
-    //  const {id, name, band, imageUrl} = this.props.album
-    // <h4>Id: {id}</h4>
-    // <h2>{band}</h2>
-    // <h2>{name}</h2>
-    // <img>{imageUrl}</img>
-    // <div className="singleAlbum" key={id}>
-    //   </div>
-    console.log('SOMETNIHG\n\n')
-    return <h1>HELLO</h1> //return ende
+    const {id, name, band, imageUrl} = this.props.album
+
+    return (
+      <div className="singleAlbum" key={id}>
+        <h1>SINGLE PAGE VIEW</h1>
+        <h4>Id: {id}</h4>
+        <h2>BAND: {band}</h2>
+        <h2>ALBUM {name}</h2>
+        <div>
+          <img src={imageUrl} />
+        </div>
+      </div>
+    ) //return ende
   } //render ende
 } //class ende
 
