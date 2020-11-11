@@ -137,6 +137,112 @@ const ordersForPostico = [
   }
 ]
 
+const addressesForPostico = [
+  {
+    fullName: 'Sandra Bullock',
+    street: '1160 1st Ave 2S',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    zipCode: 10065,
+    addressType: 'Shipping',
+    userId: 1
+  },
+  {
+    fullName: 'Alexey Kotolevskiy',
+    street: '244 W 14th St',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    zipCode: 10010,
+    addressType: 'Billing',
+    userId: 2
+  },
+  {
+    fullName: 'Ramune Balzakaite',
+    street: '14 Zeedijk St',
+    city: 'Amsterdam',
+    state: 'Netherlands',
+    country: 'Netherlands',
+    zipCode: 1012,
+    addressType: 'Shipping',
+    userId: 3
+  },
+  {
+    fullName: 'Vilte Urbonaviciute',
+    street: '25 Berzu St',
+    city: 'Kaunas',
+    state: 'Lithuania',
+    country: 'Lithuania',
+    zipCode: 54667,
+    addressType: 'Billing',
+    userId: 4
+  },
+  {
+    fullName: 'Giedre Vingyte',
+    street: 'Viale Piave 1',
+    city: 'Milan',
+    state: 'Italy',
+    country: 'Italy',
+    zipCode: 20129,
+    addressType: 'Shipping',
+    userId: 5
+  },
+  {
+    fullName: 'Agne Urbaityte',
+    street: '768 5th Ave',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    zipCode: 10019,
+    addressType: 'Billing',
+    userId: 3
+  }
+]
+
+const creditCardsForPostico = [
+  {
+    fullName: 'Peter Boustani',
+    creditCardNumber: 5369897503498521,
+    expirationMonth: 11,
+    expirationYear: 2025,
+    cvv: 347,
+    userId: 1
+  },
+  {
+    fullName: 'Alexey Kotolevskiy',
+    creditCardNumber: 2546897523456154,
+    expirationMonth: 3,
+    expirationYear: 2028,
+    cvv: 574,
+    userId: 2
+  },
+  {
+    fullName: 'Agne Urbaityte',
+    creditCardNumber: 4561235897541122,
+    expirationMonth: 5,
+    expirationYear: 2023,
+    cvv: 223,
+    userId: 3
+  },
+  {
+    fullName: 'Vilte Urbonaviciute',
+    creditCardNumber: 2445885536624545,
+    expirationMonth: 10,
+    expirationYear: 2021,
+    cvv: 654,
+    userId: 4
+  },
+  {
+    fullName: 'Vyte Murinaite',
+    creditCardNumber: 6988564123257777,
+    expirationMonth: 12,
+    expirationYear: 2022,
+    cvv: 230,
+    userId: 5
+  }
+]
+
 const seed = async () => {
   try {
     await db.sync({force: true})
