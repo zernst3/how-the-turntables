@@ -7,8 +7,8 @@ router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
       include: {
-        model: Product
-      }
+        model: Product,
+      },
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
@@ -24,11 +24,11 @@ router.get('/:orderId', async (req, res, next) => {
   try {
     const order = await Order.findAll({
       where: {
-        id: {[Op.eq]: req.params.orderId}
+        id: {[Op.eq]: req.params.orderId},
       },
       include: {
-        model: Product
-      }
+        model: Product,
+      },
     })
     res.json(order)
   } catch (error) {

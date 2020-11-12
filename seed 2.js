@@ -14,7 +14,7 @@ const productsForPostico = [
       'https://i5.walmartimages.com/asr/ac1953e5-4676-4ede-b0ff-0e3ad92818a3_1.915ca3bc461982df19a86d4acd26228a.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff',
     price: 50,
     category: 'Pop',
-    inventory: 148
+    inventory: 148,
   },
   {
     title: 'Ray of Light',
@@ -25,7 +25,7 @@ const productsForPostico = [
       'https://images-na.ssl-images-amazon.com/images/I/7128tY0BnEL._SY450_.jpg',
     price: 36,
     category: 'Pop',
-    inventory: 77
+    inventory: 77,
   },
   {
     title: 'Rumours',
@@ -36,8 +36,8 @@ const productsForPostico = [
       'https://images-na.ssl-images-amazon.com/images/I/71BekDJBb3L._SY355_.jpg',
     price: 88,
     category: 'Pop Rock',
-    inventory: 28
-  }
+    inventory: 28,
+  },
 ]
 
 const usersForPostico = [
@@ -52,7 +52,7 @@ const usersForPostico = [
     salt: 'okaodudnwod',
     googleId: 'boustanip718',
     imageUrl:
-      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
   },
   {
     firstName: 'Agne',
@@ -65,7 +65,7 @@ const usersForPostico = [
     salt: 'lkndflknfd',
     googleId: 'agne.urbaityte',
     imageUrl:
-      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
   },
   {
     firstName: 'Bobby',
@@ -78,8 +78,8 @@ const usersForPostico = [
     salt: 'isthegoat',
     googleId: 'bobby.scar',
     imageUrl:
-      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
-  }
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
+  },
 ]
 
 const seed = async () => {
@@ -103,7 +103,7 @@ if (require.main === module) {
       console.log(green('Seeding success!'))
       db.close()
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(red('Oh noes! Something went wrong!'))
       console.error(err)
       db.close()

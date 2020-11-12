@@ -17,7 +17,7 @@ const productsForPostico = [
       'https://i5.walmartimages.com/asr/ac1953e5-4676-4ede-b0ff-0e3ad92818a3_1.915ca3bc461982df19a86d4acd26228a.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff',
     price: 5000,
     category: 'Pop',
-    inventory: 148
+    inventory: 148,
   },
   {
     title: 'Ray of Light',
@@ -28,7 +28,7 @@ const productsForPostico = [
       'https://images-na.ssl-images-amazon.com/images/I/7128tY0BnEL._SY450_.jpg',
     price: 3600,
     category: 'Pop',
-    inventory: 77
+    inventory: 77,
   },
   {
     title: 'Rumours',
@@ -39,7 +39,7 @@ const productsForPostico = [
       'https://images-na.ssl-images-amazon.com/images/I/71BekDJBb3L._SY355_.jpg',
     price: 8800,
     category: 'Pop Rock',
-    inventory: 28
+    inventory: 28,
   },
   {
     title: 'Back in Black',
@@ -50,8 +50,8 @@ const productsForPostico = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/ACDC_Back_in_Black.png/1200px-ACDC_Back_in_Black.png',
     price: 10000,
     category: 'Rock and Roll',
-    inventory: 4
-  }
+    inventory: 4,
+  },
 ]
 
 const usersForPostico = [
@@ -66,7 +66,7 @@ const usersForPostico = [
     salt: 'okaodudnwod',
     googleId: 'boustanip718',
     imageUrl:
-      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
   },
   {
     firstName: 'Agne',
@@ -79,7 +79,7 @@ const usersForPostico = [
     salt: 'lkndflknfd',
     googleId: 'agne.urbaityte',
     imageUrl:
-      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
   },
   {
     firstName: 'Bobby',
@@ -92,7 +92,7 @@ const usersForPostico = [
     salt: 'isthegoat',
     googleId: 'bobby.scar',
     imageUrl:
-      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
   },
   {
     firstName: 'Joseph',
@@ -105,38 +105,38 @@ const usersForPostico = [
     salt: 'myNameIsJoshua', // is this provided for us????
     googleId: 'Mango',
     imageUrl:
-      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png'
-  }
+      'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
+  },
 ]
 
 const ordersForPostico = [
   {
     status: 'Current Cart',
-    userId: 1
+    userId: 1,
   },
   {
     status: 'Current Cart',
-    userId: 2
+    userId: 2,
   },
   {
     status: 'Old Order',
     deliveryStatus: 'Pending',
-    userId: 1
+    userId: 1,
   },
   {
     status: 'Old Order',
     deliveryStatus: 'Delivered',
-    userId: 3
+    userId: 3,
   },
   {
     status: 'Old Order',
     deliveryStatus: 'Delivered',
-    userId: 3
+    userId: 3,
   },
   {
     status: 'Current Cart',
-    userId: 4
-  }
+    userId: 4,
+  },
 ]
 
 const addressesForPostico = [
@@ -148,7 +148,7 @@ const addressesForPostico = [
     country: 'USA',
     zipCode: 10065,
     addressType: 'Shipping',
-    userId: 1
+    userId: 1,
   },
   {
     fullName: 'Alexey Kotolevskiy',
@@ -158,7 +158,7 @@ const addressesForPostico = [
     country: 'USA',
     zipCode: 10010,
     addressType: 'Billing',
-    userId: 2
+    userId: 2,
   },
   {
     fullName: 'Ramune Balzakaite',
@@ -168,7 +168,7 @@ const addressesForPostico = [
     country: 'Netherlands',
     zipCode: 1012,
     addressType: 'Shipping',
-    userId: 3
+    userId: 3,
   },
   {
     fullName: 'Vilte Urbonaviciute',
@@ -178,7 +178,7 @@ const addressesForPostico = [
     country: 'Lithuania',
     zipCode: 54667,
     addressType: 'Billing',
-    userId: 4
+    userId: 4,
   },
   {
     fullName: 'Giedre Vingyte',
@@ -188,7 +188,7 @@ const addressesForPostico = [
     country: 'Italy',
     zipCode: 20129,
     addressType: 'Shipping',
-    userId: 3
+    userId: 3,
   },
   {
     fullName: 'Agne Urbaityte',
@@ -198,8 +198,8 @@ const addressesForPostico = [
     country: 'USA',
     zipCode: 10019,
     addressType: 'Billing',
-    userId: 3
-  }
+    userId: 3,
+  },
 ]
 
 const creditCardsForPostico = [
@@ -209,7 +209,7 @@ const creditCardsForPostico = [
     expirationMonth: 11,
     expirationYear: 2025,
     cvv: 347,
-    userId: 1
+    userId: 1,
   },
   {
     fullName: 'Alexey Kotolevskiy',
@@ -217,7 +217,7 @@ const creditCardsForPostico = [
     expirationMonth: 3,
     expirationYear: 2028,
     cvv: 574,
-    userId: 2
+    userId: 2,
   },
   {
     fullName: 'Agne Urbaityte',
@@ -225,7 +225,7 @@ const creditCardsForPostico = [
     expirationMonth: 5,
     expirationYear: 2023,
     cvv: 223,
-    userId: 3
+    userId: 3,
   },
   {
     fullName: 'Vilte Urbonaviciute',
@@ -233,7 +233,7 @@ const creditCardsForPostico = [
     expirationMonth: 10,
     expirationYear: 2021,
     cvv: 654,
-    userId: 4
+    userId: 4,
   },
   {
     fullName: 'Vyte Murinaite',
@@ -241,8 +241,8 @@ const creditCardsForPostico = [
     expirationMonth: 12,
     expirationYear: 2022,
     cvv: 230,
-    userId: 1
-  }
+    userId: 1,
+  },
 ]
 
 const seed = async () => {
@@ -250,31 +250,31 @@ const seed = async () => {
     await db.sync({force: true})
 
     const productArr = await Promise.all(
-      productsForPostico.map(product => {
+      productsForPostico.map((product) => {
         return Products.create(product)
       })
     )
 
     await Promise.all(
-      usersForPostico.map(user => {
+      usersForPostico.map((user) => {
         return Users.create(user)
       })
     )
 
     const orderArr = await Promise.all(
-      ordersForPostico.map(order => {
+      ordersForPostico.map((order) => {
         return Orders.create(order)
       })
     )
 
     await Promise.all(
-      creditCardsForPostico.map(creditCard => {
+      creditCardsForPostico.map((creditCard) => {
         return CreditCards.create(creditCard)
       })
     )
 
     await Promise.all(
-      addressesForPostico.map(address => {
+      addressesForPostico.map((address) => {
         return Addresses.create(address)
       })
     )
@@ -302,7 +302,7 @@ if (require.main === module) {
       console.log(green('Seeding success!'))
       db.close()
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(red('Oh noes! Something went wrong!'))
       console.error(err)
       db.close()

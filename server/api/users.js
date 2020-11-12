@@ -21,25 +21,25 @@ router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findAll({
       where: {
-        id: {[Op.eq]: req.params.userId}
+        id: {[Op.eq]: req.params.userId},
       },
       include: [
         {
           model: Address,
-          where: {userId: req.params.userId}
+          where: {userId: req.params.userId},
         },
         {
           model: Order,
           where: {userId: req.params.userId},
           include: {
-            model: Product
-          }
+            model: Product,
+          },
         },
         {
           model: CreditCard,
-          where: {userId: req.params.userId}
-        }
-      ]
+          where: {userId: req.params.userId},
+        },
+      ],
     })
     res.json(user)
   } catch (error) {

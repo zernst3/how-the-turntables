@@ -22,7 +22,7 @@ const Album = ({
         <h4>Songs: {songList}</h4>
         <h4>Year: {releaseYear}</h4>
         <h1>Category: {category}</h1>
-        <h3>Price: ${price}</h3>
+        <h3>Price: ${(price / 100).toFixed(2)}</h3>
       </Link>
       <button onClick={() => buy(id)}>Buy</button>
     </div>

@@ -11,7 +11,7 @@ const reducer = combineReducers({
   user,
   cart,
   albums: albumsReducer,
-  album: albumReducer
+  album: albumReducer,
 })
 
 const middleware = composeWithDevTools(
