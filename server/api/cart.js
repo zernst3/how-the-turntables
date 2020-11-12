@@ -1,6 +1,6 @@
 const router = require('express').Router()
 module.exports = router
-const {Order, Product, OrderItem} = require('../db/models')
+const {Order, Product, orderItem} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -10,56 +10,6 @@ router.get('/', async (req, res, next) => {
 
     if (!req.session.cart) {
       req.session.cart = {products: []}
-    }
-
-    req.session.cart = {
-      products: [
-        {
-          id: 1,
-          title: 'Thriller',
-          songList: 'Toiahwewewf,wefw',
-          artistName: 'Michael Jackson',
-          releaseYear: 1982,
-          imageUrl:
-            'https://i5.walmartimages.com/asr/ac1953e5-4676-4ede-b0ff-0e3ad92818a3_1.915ca3bc461982df19a86d4acd26228a.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff',
-          price: 2050,
-          category: 'Pop',
-          inventory: 148,
-          orderItem: {
-            quantity: 3,
-          },
-        },
-        {
-          id: 2,
-          title: 'Ray of Light',
-          songList: 'Erotic, ray of Light, Time goes By',
-          artistName: 'Madonna',
-          releaseYear: 1988,
-          imageUrl:
-            'https://images-na.ssl-images-amazon.com/images/I/7128tY0BnEL._SY450_.jpg',
-          price: 2036,
-          category: 'Pop',
-          inventory: 77,
-          orderItem: {
-            quantity: 2,
-          },
-        },
-        {
-          id: 3,
-          title: 'Rumours',
-          songList: 'Dreams, Never going back',
-          artistName: 'Fleetwood Mac',
-          releaseYear: 1977,
-          imageUrl:
-            'https://images-na.ssl-images-amazon.com/images/I/71BekDJBb3L._SY355_.jpg',
-          price: 2088,
-          category: 'Pop Rock',
-          inventory: 28,
-          orderItem: {
-            quantity: 1,
-          },
-        },
-      ],
     }
 
     res.json(req.session.cart)
@@ -83,7 +33,7 @@ router.post('/:id', async (req, res, next) => {
         parseInt(req.session.user.id)
       ))
 
-      await OrderItem.upsert({
+      await orderItem.upsert({
         ProductId: product.id,
         OrderId: cart.id,
         quantity: req.body.quantity,
@@ -120,14 +70,14 @@ router.delete('/:id', async (req, res, next) => {
   try {
     if (req.session.user) {
       const cart = await findUserCart(parseInt(req.session.user.id))
-      const orderItem = await OrderItem.findOne({
+      const item = await orderItem.findOne({
         where: {
           ProductId: req.params.id,
           OrderId: cart.id,
         },
       })
 
-      orderItem.destroy()
+      item.destroy()
     }
     req.session.cart.products = req.session.cart.products.filter((item) => {
       return item.id !== parseInt(req.params.id)
