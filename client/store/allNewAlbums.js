@@ -104,7 +104,7 @@ export const fetchNewAlbums = () => {
 export const buy = id => {
   return async dispatch => {
     try {
-      const {data} = await Axios.post('/addToCart', {id})
+      const response = await Axios.post('/api/cart/', {id})
       // dispatch(updateUser)
     } catch (error) {
       console.log(error)
