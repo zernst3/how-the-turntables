@@ -4,6 +4,8 @@ const {green, red} = require('chalk')
 const Products = require('../server/db/models/product')
 const Users = require('../server/db/models/user')
 const Orders = require('../server/db/models/order')
+const CreditCards = require('../server/db/models/creditCard')
+const Addresses = require('../server/db/models/address')
 
 const productsForPostico = [
   {
@@ -186,7 +188,7 @@ const addressesForPostico = [
     country: 'Italy',
     zipCode: 20129,
     addressType: 'Shipping',
-    userId: 5
+    userId: 3
   },
   {
     fullName: 'Agne Urbaityte',
@@ -203,7 +205,7 @@ const addressesForPostico = [
 const creditCardsForPostico = [
   {
     fullName: 'Peter Boustani',
-    creditCardNumber: 5369897503498521,
+    creditCardNumber: 2222405343248877,
     expirationMonth: 11,
     expirationYear: 2025,
     cvv: 347,
@@ -211,7 +213,7 @@ const creditCardsForPostico = [
   },
   {
     fullName: 'Alexey Kotolevskiy',
-    creditCardNumber: 2546897523456154,
+    creditCardNumber: 5111010030175156,
     expirationMonth: 3,
     expirationYear: 2028,
     cvv: 574,
@@ -219,7 +221,7 @@ const creditCardsForPostico = [
   },
   {
     fullName: 'Agne Urbaityte',
-    creditCardNumber: 4561235897541122,
+    creditCardNumber: 6011111111111117,
     expirationMonth: 5,
     expirationYear: 2023,
     cvv: 223,
@@ -227,7 +229,7 @@ const creditCardsForPostico = [
   },
   {
     fullName: 'Vilte Urbonaviciute',
-    creditCardNumber: 2445885536624545,
+    creditCardNumber: 4111111111111111,
     expirationMonth: 10,
     expirationYear: 2021,
     cvv: 654,
@@ -235,11 +237,11 @@ const creditCardsForPostico = [
   },
   {
     fullName: 'Vyte Murinaite',
-    creditCardNumber: 6988564123257777,
+    creditCardNumber: 378282246310005,
     expirationMonth: 12,
     expirationYear: 2022,
     cvv: 230,
-    userId: 5
+    userId: 1
   }
 ]
 
@@ -262,6 +264,18 @@ const seed = async () => {
     await Promise.all(
       ordersForPostico.map(order => {
         return Orders.create(order)
+      })
+    )
+
+    await Promise.all(
+      creditCardsForPostico.map(creditCard => {
+        return CreditCards.create(creditCard)
+      })
+    )
+
+    await Promise.all(
+      addressesForPostico.map(address => {
+        return Addresses.create(address)
       })
     )
 

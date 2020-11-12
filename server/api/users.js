@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Sequelize = require('sequelize')
-const {User, Address, Order} = require('../db/models')
+const {User, Address, Order, CreditCard} = require('../db/models')
 const Op = Sequelize.Op
 
 router.get('/', async (req, res, next) => {
@@ -30,6 +30,10 @@ router.get('/:userId', async (req, res, next) => {
         },
         {
           model: Order,
+          where: {userId: req.params.userId}
+        },
+        {
+          model: CreditCard,
           where: {userId: req.params.userId}
         }
       ]

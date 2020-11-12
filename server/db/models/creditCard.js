@@ -7,7 +7,7 @@ const CreditCard = db.define('creditCard', {
     allowNull: false
   },
   creditCardNumber: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.BIGINT,
     allowNull: false,
     validate: {
       isCreditCard: true
