@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Album from './Album'
-import {fetchNewAlbums} from '../store/allNewAlbums'
+import {fetchNewAlbums, buy} from '../store/allNewAlbums'
 
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
@@ -9,9 +9,9 @@ export class AllNewAlbums extends React.Component {
   }
 
   render() {
-    if (!this.props.albums) {
-      return <div className="waiting">Loading New Albums...</div>
-    }
+    // if (!this.props.albums) {
+    //   return <div className="waiting">Loading New Albums...</div>
+    // }
 
     return (
       <div className="allNewAlbums">
@@ -43,7 +43,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchNewAlbums: () => dispatch(fetchNewAlbums())
+    fetchNewAlbums: () => dispatch(fetchNewAlbums()),
+    buy: id => dispatch(buy(id))
   }
 }
 

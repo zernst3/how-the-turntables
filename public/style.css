@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
@@ -12,10 +17,24 @@ label {
 }
 
 nav a {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   display: inline-block;
   margin: 1em;
 }
-
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+a:visited {
+  color: #000000;
+}
+a:hover {
+  color: #366718;
+}
 form div {
   margin: 1em;
   display: inline-block;
@@ -23,18 +42,18 @@ form div {
 
 allNewAlbums {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
 }
 
 singleAlbum {
   display: flex;
-  flex: 0 0 25%;
-  justify-content: center;
-  color: #000000;
-  border-radius: 1px;
-  padding: 1px;
-  width: 200px;
-  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+Album {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

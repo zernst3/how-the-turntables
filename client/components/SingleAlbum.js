@@ -1,5 +1,5 @@
 import React from 'react'
-import {fetchAlbum} from '../store/album'
+import {fetchAlbum, buy} from '../store/album'
 import {connect} from 'react-redux'
 
 export class SingleAlbum extends React.Component {
@@ -33,6 +33,7 @@ export class SingleAlbum extends React.Component {
         <h2>Genre: {category}</h2>
         <h3>Released: {releaseYear}</h3>
         <h1>Price: ${price}</h1>
+        <button onClick={buy}>Buy</button>
         <h2 />
       </div>
     ) //return ende
