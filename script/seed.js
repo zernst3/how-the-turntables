@@ -249,7 +249,7 @@ const seed = async () => {
   try {
     await db.sync({force: true})
 
-    await Promise.all(
+    const productArr = await Promise.all(
       productsForPostico.map(product => {
         return Products.create(product)
       })
@@ -261,7 +261,7 @@ const seed = async () => {
       })
     )
 
-    await Promise.all(
+    const orderArr = await Promise.all(
       ordersForPostico.map(order => {
         return Orders.create(order)
       })
@@ -278,6 +278,9 @@ const seed = async () => {
         return Addresses.create(address)
       })
     )
+
+    await orderArr[4].addProduct(productArr[0])
+    await orderArr[1].addProduct(productArr[2])
 
     // try {
     //   await db.sync({force: true})
