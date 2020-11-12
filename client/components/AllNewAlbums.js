@@ -2,20 +2,20 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Album from './Album'
 import {fetchNewAlbums, buy} from '../store/allNewAlbums'
-
+import {Link} from 'react-router-dom'
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
     this.props.fetchNewAlbums()
   }
 
   render() {
-    // if (!this.props.albums) {
-    //   return <div className="waiting">Loading New Albums...</div>
-    // }
+    if (!this.props.albums) {
+      return <div className="waiting">Loading New Albums...</div>
+    }
 
     return (
       <div className="allNewAlbums">
-        {this.props.albums.map(album => {
+        {this.props.albums.map((album) => {
           return (
             <Album
               key={album.id}
@@ -27,6 +27,7 @@ export class AllNewAlbums extends React.Component {
               songList={album.songList}
               releaseYear={album.releaseYear}
               category={album.category}
+              buy={this.props.buy}
             />
           )
         })}
@@ -35,16 +36,16 @@ export class AllNewAlbums extends React.Component {
   } //render
 } //class
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    albums: state.albums
+    albums: state.albums,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchNewAlbums: () => dispatch(fetchNewAlbums()),
-    buy: id => dispatch(buy(id))
+    buy: (id) => dispatch(buy(id)),
   }
 }
 

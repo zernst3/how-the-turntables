@@ -10,17 +10,19 @@ const SET_CART = 'SET_CART'
 /**
  * INITIAL STATE
  */
-const defaultCart = []
+const defaultCart = {
+  products: [],
+}
 
 /**
  * ACTION CREATORS
  */
-const setCart = cart => ({type: SET_CART, cart})
+const setCart = (cart) => ({type: SET_CART, cart})
 
 /**
  * THUNK CREATORS
  */
-export const getCart = () => async dispatch => {
+export const getCart = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/cart')
     dispatch(setCart(res.data))
@@ -29,12 +31,12 @@ export const getCart = () => async dispatch => {
   }
 }
 
-export const removeItemFromCart = itemId => {
-  return async dispatch => {
+export const removeItemFromCart = (itemId) => {
+  return async (dispatch) => {
     try {
       await axios.delete(`/api/cart/${itemId}`)
       dispatch(
-        setCart(store.getState().cart.filter(item => item.id !== itemId))
+        setCart(store.getState().cart.filter((item) => item.id !== itemId))
       )
     } catch (error) {
       console.log(error)
@@ -45,7 +47,7 @@ export const removeItemFromCart = itemId => {
 /**
  * REDUCER
  */
-export default function(state = defaultCart, action) {
+export default function (state = defaultCart, action) {
   switch (action.type) {
     case SET_CART:
       return action.cart

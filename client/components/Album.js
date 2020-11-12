@@ -10,7 +10,8 @@ const Album = ({
   songList,
   releaseYear,
   category,
-  price
+  price,
+  buy,
 }) => {
   return (
     <div className="Album" key={id}>
@@ -23,7 +24,7 @@ const Album = ({
         <h1>Category: {category}</h1>
         <h3>Price: ${price}</h3>
       </Link>
-      <button onClick={buy}>Buy</button>
+      <button onClick={() => buy(id)}>Buy</button>
     </div>
   )
 }

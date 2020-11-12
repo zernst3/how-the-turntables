@@ -15,7 +15,7 @@ export class SingleAlbum extends React.Component {
       songList,
       releaseYear,
       category,
-      price
+      price,
     } = this.props.album
     const name = title
     const band = artistName
@@ -27,7 +27,7 @@ export class SingleAlbum extends React.Component {
         <h1>SINGLE PAGE VIEW</h1>
         <h4>Id: {id}</h4>
         <h3>Artist: {band}</h3>
-        <h2>Album: {title}</h2>
+        <h2>Album: {name}</h2>
         <img src={imageUrl} />
         <h4>Tracklist: {songList}</h4>
         <h2>Genre: {category}</h2>
@@ -40,15 +40,15 @@ export class SingleAlbum extends React.Component {
   } //render ende
 } //class ende
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    album: state.album
+    album: state.album,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAlbum: id => dispatch(fetchAlbum(id))
+    fetchAlbum: (id) => dispatch(fetchAlbum(id)),
   }
 }
 
