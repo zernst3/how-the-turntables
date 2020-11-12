@@ -95,11 +95,11 @@ const findUserCart = async (id) => {
   const cart = await Order.findOrCreate({
     where: {
       userId: parseInt(id),
-      status: 'Current Cart',
+      status: null,
     },
     defaults: {
       userId: parseInt(id),
-      status: 'Current Cart',
+      status: null,
     },
     include: {
       model: Product,
