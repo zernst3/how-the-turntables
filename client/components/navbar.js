@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import './navbar.css'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, cart}) => (
   <div id="navbar-container">
     <Link to="/home">
       <h1>How the Turntables</h1>
@@ -25,6 +25,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/cart">Cart {cart.products.length}</Link>
         </div>
       )}
     </nav>
@@ -37,6 +38,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
+    cart: state.cart,
   }
 }
 

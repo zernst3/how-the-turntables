@@ -10,7 +10,9 @@ const SET_CART = 'SET_CART'
 /**
  * INITIAL STATE
  */
-const defaultCart = []
+const defaultCart = {
+  products: [],
+}
 
 /**
  * ACTION CREATORS

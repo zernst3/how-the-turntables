@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Album from './Album'
-import {fetchNewAlbums} from '../store/allNewAlbums'
-
+import {fetchNewAlbums, buy} from '../store/allNewAlbums'
+import {Link} from 'react-router-dom'
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
     this.props.fetchNewAlbums()
@@ -20,13 +20,17 @@ export class AllNewAlbums extends React.Component {
             <Album
               key={album.id}
               id={album.id}
-              name={album.name}
-              band={album.band}
+              name={album.title}
+              band={album.artistName}
               imageUrl={album.imageUrl}
+              price={album.price}
+              songList={album.songList}
+              releaseYear={album.releaseYear}
+              category={album.category}
+              buy={this.props.buy}
             />
           )
         })}
-        //map ende
       </div>
     ) //return
   } //render
@@ -41,6 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchNewAlbums: () => dispatch(fetchNewAlbums()),
+    buy: (id) => dispatch(buy(id)),
   }
 }
 
