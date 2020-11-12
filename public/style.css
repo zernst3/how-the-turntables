@@ -20,3 +20,21 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+allNewAlbums {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+singleAlbum {
+  display: flex;
+  flex: 0 0 25%;
+  justify-content: center;
+  color: #000000;
+  border-radius: 1px;
+  padding: 1px;
+  width: 200px;
+  position: relative;
+}

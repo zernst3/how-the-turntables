@@ -20,12 +20,16 @@ export class AllNewAlbums extends React.Component {
             <Album
               key={album.id}
               id={album.id}
-              name={album.name}
-              band={album.band}
+              name={album.title}
+              band={album.artistName}
               imageUrl={album.imageUrl}
+              price={album.price}
+              songList={album.songList}
+              releaseYear={album.releaseYear}
+              category={album.category}
             />
           )
-        })}//map ende
+        })}
       </div>
     ) //return
   } //render

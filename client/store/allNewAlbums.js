@@ -87,20 +87,19 @@ const dummyData = [
   }
 ]
 
+// return dispatch => {
+//   dispatch(setAlbums(dummyData))
+// }
 export const fetchNewAlbums = () => {
-  return dispatch => {
-    dispatch(setAlbums(dummyData))
+  return async dispatch => {
+    try {
+      const {data} = await Axios.get(`/api/products`)
+      dispatch(setAlbums(data))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
-
-// return async (dispatch) => {
-//   try {
-//     const { data } = await Axios.get(`/api/`)
-//     dispatch(setAlbums(data))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
 
 const initialState = []
 
