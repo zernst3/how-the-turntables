@@ -25,14 +25,14 @@ export const getCart = () => async (dispatch) => {
     const res = await axios.get('/api/cart')
     dispatch(setCart(res.data))
   } catch (err) {
-    coinsole.error(err)
+    console.error(err)
   }
 }
 
 export const removeItemFromCart = (itemId) => {
   return async (dispatch) => {
     try {
-      // await axios.delete(`/api/cart/${itemId}`)
+      await axios.delete(`/api/cart/${itemId}`)
       dispatch(
         setCart(store.getState().cart.filter((item) => item.id !== itemId))
       )

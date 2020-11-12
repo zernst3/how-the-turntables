@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getCart, removeItem} from '../store'
+import {getCart, removeItemFromCart} from '../store'
 import CartItem from './cart-item'
 
 /**
@@ -18,7 +18,6 @@ class Cart extends React.Component {
 
   async removeItem(id) {
     await this.props.removeItemFromCart(id)
-    this.props.getCart()
   }
 
   render() {
@@ -59,7 +58,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getCart: () => dispatch(getCart()),
-    removeItem: (id) => dispatch(removeItem(id)),
+    removeItemFromCart: (id) => dispatch(removeItemFromCart(id)),
   }
 }
 

@@ -28,12 +28,14 @@ const CartItem = ({
         defaultValue={amount}
         onChange={(evt) => {
           console.log('Amount changed: ', evt.target.value)
-          removeItem(id)
         }}
       />
       <button
         type="submit"
-        onClick={() => console.log('Remove item from cart')}
+        onClick={() => {
+          console.log('Remove item from cart')
+          removeItem(id)
+        }}
       >
         Delete
       </button>
