@@ -1,15 +1,12 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const OrderItem = db.define('order-item', {
+const OrderItem = db.define('OrderItem', {
   quantity: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    defaultValue: 1
+    type: Sequelize.INTEGER
   },
-  combinedPrice: {
-    type: Sequelize.INTEGER,
-    allowNull: false
+  itemPriceAtTimeOfPurchase: {
+    type: Sequelize.INTEGER
   }
 })
 
