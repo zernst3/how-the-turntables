@@ -32,7 +32,6 @@ class Cart extends React.Component {
         <h1>Your Cart:</h1>
         {this.props.cart.products && this.props.cart.products.length > 0 ? (
           this.props.cart.products.map((item, idx) => {
-            console.log(item)
             total = total + item.OrderItem.quantity * item.price
             return (
               <CartItem

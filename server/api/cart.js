@@ -44,7 +44,7 @@ router.post('/:id', async (req, res, next) => {
     }
 
     // This is if the cart has not been loaded into the session yet for a guest user, this creates a new cart with the item
-    if (!req.session.cart.products) {
+    if (!req.session.cart || !req.session.cart.products) {
       req.session.cart = {products: []}
       req.session.cart.products.push(product)
       return res.json(req.session.cart)
