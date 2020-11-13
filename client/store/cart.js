@@ -56,7 +56,7 @@ export const updateQuantity = (itemId, quantity) => {
         ...store.getState().cart,
         products: store.getState().cart.products.map((product) => {
           if (product.id === itemId) {
-            product.orderItem.quantity = quantity
+            product.OrderItem.quantity = quantity
             return product
           } else {
             return product

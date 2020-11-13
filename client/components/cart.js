@@ -32,7 +32,8 @@ class Cart extends React.Component {
         <h1>Your Cart:</h1>
         {this.props.cart.products && this.props.cart.products.length > 0 ? (
           this.props.cart.products.map((item, idx) => {
-            total = total + item.orderItem.quantity * item.price
+            console.log(item)
+            total = total + item.OrderItem.quantity * item.price
             return (
               <CartItem
                 key={idx}
@@ -41,7 +42,7 @@ class Cart extends React.Component {
                 artistName={item.artistName}
                 imageUrl={item.imageUrl}
                 price={item.price}
-                quantity={item.orderItem.quantity}
+                quantity={item.OrderItem.quantity}
                 removeItem={this.removeItem}
                 updateQuantity={this.updateQuantity}
               />

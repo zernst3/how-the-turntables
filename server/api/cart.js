@@ -1,11 +1,11 @@
 const router = require('express').Router()
 module.exports = router
-const {Order, Product, orderItem} = require('../db/models')
+const {Order, Product, OrderItem} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
-    if (req.session.user) {
-      req.session.cart = await findUserCart(parseInt(req.session.user.id))
+    if (req.session.passport) {
+      req.session.cart = await findUserCart(parseInt(req.session.passport.user))
     }
 
     if (!req.session.cart) {
@@ -24,18 +24,18 @@ router.post('/:id', async (req, res, next) => {
 
     let product = await Product.findByPk(parseInt(req.params.id))
     product = product.dataValues
-    product.orderItem = {}
-    product.orderItem.quantity = req.body.quantity
+    product.OrderItem = {}
+    product.OrderItem.quantity = req.body.quantity
 
     // If user is logged in, make cart equal to cart in database and add item to the cart
-    if (req.session.user) {
+    if (req.session.passport) {
       const cart = (req.session.cart = await findUserCart(
-        parseInt(req.session.user.id)
+        parseInt(req.session.passport.user)
       ))
 
-      await orderItem.upsert({
-        ProductId: product.id,
-        OrderId: cart.id,
+      await OrderItem.upsert({
+        productId: product.id,
+        orderId: cart.id,
         quantity: req.body.quantity,
       })
     }
@@ -68,9 +68,9 @@ router.post('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    if (req.session.user) {
-      const cart = await findUserCart(parseInt(req.session.user.id))
-      const item = await orderItem.findOne({
+    if (req.session.passport) {
+      const cart = await findUserCart(parseInt(req.session.passport.user))
+      const item = await OrderItem.findOne({
         where: {
           ProductId: req.params.id,
           OrderId: cart.id,
@@ -92,14 +92,15 @@ router.delete('/:id', async (req, res, next) => {
 // Maybe rework this into an instance method?
 const findUserCart = async (id) => {
   // Searches for user information based on currently logged-in user, and includes their cart
+
   const cart = await Order.findOrCreate({
     where: {
       userId: parseInt(id),
-      status: null,
+      status: 'Current Cart',
     },
     defaults: {
       userId: parseInt(id),
-      status: null,
+      status: 'Current Cart',
     },
     include: {
       model: Product,
@@ -107,5 +108,5 @@ const findUserCart = async (id) => {
     },
   })
 
-  return cart
+  return cart[0].dataValues
 }
