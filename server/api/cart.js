@@ -4,7 +4,7 @@ const {Order, Product, OrderItem} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
-    if (req.session.passport) {
+    if (req.session.passport && req.session.passport.user) {
       req.session.cart = await findUserCart(parseInt(req.session.passport.user))
     }
 
@@ -28,20 +28,23 @@ router.post('/:id', async (req, res, next) => {
     product.OrderItem.quantity = req.body.quantity
 
     // If user is logged in, make cart equal to cart in database and add item to the cart
-    if (req.session.passport) {
+    if (req.session.passport && req.session.passport.user) {
       const cart = (req.session.cart = await findUserCart(
-        parseInt(req.session.passport.user)
+        req.session.passport.user
       ))
 
-      await OrderItem.upsert({
-        productId: product.id,
-        orderId: cart.id,
-        quantity: req.body.quantity,
-      })
+      await OrderItem.upsert(
+        {
+          productId: product.id,
+          orderId: cart.id,
+          quantity: req.body.quantity,
+        },
+        {returning: true}
+      )
     }
 
     // This is if the cart has not been loaded into the session yet for a guest user, this creates a new cart with the item
-    if (!req.session.cart) {
+    if (!req.session.cart.products) {
       req.session.cart = {products: []}
       req.session.cart.products.push(product)
       return res.json(req.session.cart)
@@ -68,12 +71,12 @@ router.post('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    if (req.session.passport) {
+    if (req.session.passport && req.session.passport.user) {
       const cart = await findUserCart(parseInt(req.session.passport.user))
       const item = await OrderItem.findOne({
         where: {
-          ProductId: req.params.id,
-          OrderId: cart.id,
+          productId: req.params.id,
+          orderId: cart.id,
         },
       })
 
