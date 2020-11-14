@@ -135,7 +135,9 @@ class Checkout extends React.Component {
                 })}
               </tbody>
             </table>
-            <div>Total: ${(this.state.total / 100).toFixed(2)}</div>
+            <div id="total">
+              <strong>Total:</strong> ${(this.state.total / 100).toFixed(2)}
+            </div>
             <CheckoutForm
               email={this.state.email}
               creditCards={this.state.creditCards}
