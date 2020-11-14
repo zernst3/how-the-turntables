@@ -16,8 +16,7 @@ class Checkout extends React.Component {
       email: '',
       creditCards: [],
       selectedCreditCard: {},
-      billingAddresses: [],
-      shippingAddresses: [],
+      addresses: [],
       selectedBillingAddress: {},
       selectedShippingAddress: {},
     }
@@ -30,18 +29,10 @@ class Checkout extends React.Component {
     await this.props.getUserCheckout()
 
     if (this.props.userCheckout.Addresses) {
-      const billing = this.props.userCheckout.Addresses.filter(
-        (address) => address.addressType === 'Billing'
-      )
-
-      const shipping = this.props.userCheckout.Addresses.filter(
-        (address) => address.addressType === 'Shipping'
-      )
       this.setState({
-        billingAddresses: billing,
-        selectedBillingAddress: billing[0],
-        shippingAddresses: shipping,
-        selectedShippingAddress: shipping[0],
+        addresses: this.props.userCheckout.Addresses,
+        selectedBillingAddress: this.props.userCheckout.Addresses[0],
+        selectedShippingAddress: this.props.userCheckout.Addresses[0],
       })
     }
 
@@ -149,8 +140,7 @@ class Checkout extends React.Component {
               email={this.state.email}
               creditCards={this.state.creditCards}
               selectedCreditCard={this.state.selectedCreditCard}
-              billingAddresses={this.state.billingAddresses}
-              shippingAddresses={this.state.shippingAddresses}
+              addresses={this.state.addresses}
               selectedBillingAddress={this.state.selectedBillingAddress}
               selectedShippingAddress={this.state.selectedShippingAddress}
               handleChange={this.handleChange}
