@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getCart, removeItemFromCart, updateQuantity} from '../store'
+import {Link} from 'react-router-dom'
 import CartItem from './cart-item'
 
 /**
@@ -54,9 +55,7 @@ class Cart extends React.Component {
           <h1>Loading...</h1>
         )}
         <div>Total: ${(total / 100).toFixed(2)}</div>
-        <button type="submit" onClick={() => console.log('Buy Now')}>
-          Buy Now
-        </button>
+        <Link to="/checkout">Checkout</Link>
       </div>
     )
   }
