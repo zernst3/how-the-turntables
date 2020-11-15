@@ -7,12 +7,12 @@ import store from './index'
  */
 const SET_CART = 'SET_CART'
 
+const UPDATE_CART = 'UPDATE_CART'
+
 /**
  * INITIAL STATE
  */
-const defaultCart = {
-  products: [],
-}
+const defaultCart = []
 
 /**
  * ACTION CREATORS
@@ -70,6 +70,11 @@ export const updateQuantity = (itemId, quantity) => {
   }
 }
 
+export const updateCart = (item) => ({
+  type: UPDATE_CART,
+  item,
+})
+
 /**
  * REDUCER
  */
@@ -77,6 +82,10 @@ export default function (state = defaultCart, action) {
   switch (action.type) {
     case SET_CART:
       return action.cart
+
+    case UPDATE_CART:
+      return state, (products = [...products, action.item])
+
     default:
       return state
   }
