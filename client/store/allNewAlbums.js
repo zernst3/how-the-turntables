@@ -1,9 +1,8 @@
 import Axios from 'axios'
-import store from './index'
+import {updateCart} from './index'
+import Cookie from 'js-cookie'
 
 const SET_ALBUMS = 'SET_ALBUMS'
-
-const UPDATE_CART = 'UPDATE_CART'
 
 export const setAlbums = (albums) => ({
   type: SET_ALBUMS,
@@ -24,21 +23,20 @@ export const fetchNewAlbums = () => {
   }
 }
 
-export const updateCart = (item) => ({
-  type: UPDATE_CART,
-  item,
-})
 export const buy = (id) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
-      const response = await Axios.post(`/api/cart/${id}`, {quantity: 1})
-      console.log('id', id)
-      const {data} = response
-      console.log('data products', data.products)
+      const stat = getState()
+      const cart = stat.cart
 
-      //   setState([{products: data.products}])
+      const response = await Axios.post(`/api/cart/${id}`, {quantity: 1})
+      const {data} = response
+      console.log('DATA PRODUCTS', data.products)
       dispatch(updateCart(data.products))
-      console.log('STATE.cart', store.getState().cart.products)
+      console.log('STATE.cart', stat)
+      Cookie.remove('cart')
+      Cookie.set('cart', JSON.stringify(data.products))
+      console.log('JSON BACK', JSON.parse(Cookie.get('cart')))
     } catch (error) {
       console.log(error)
     }
@@ -51,9 +49,6 @@ export default function albumsReducer(state = initialState, action) {
   switch (action.type) {
     case SET_ALBUMS:
       return action.albums
-
-    case UPDATE_CART:
-      return [...state, action.item]
 
     default:
       return state

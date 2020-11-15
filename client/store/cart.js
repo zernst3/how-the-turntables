@@ -1,6 +1,7 @@
 import axios from 'axios'
 import history from '../history'
 import store from './index'
+import Cookie from 'js-cookie'
 
 /**
  * ACTION TYPES
@@ -9,6 +10,13 @@ const SET_CART = 'SET_CART'
 
 const UPDATE_CART = 'UPDATE_CART'
 
+const getInitialState = () => {
+  const cookieData = Cookie.get('cart')
+  if (cookieData) {
+    return JSON.parse(cookieData)
+  }
+  return []
+}
 /**
  * INITIAL STATE
  */
@@ -70,9 +78,9 @@ export const updateQuantity = (itemId, quantity) => {
   }
 }
 
-export const updateCart = (item) => ({
+export const updateCart = (items) => ({
   type: UPDATE_CART,
-  item,
+  items,
 })
 
 /**
@@ -84,7 +92,7 @@ export default function (state = defaultCart, action) {
       return action.cart
 
     case UPDATE_CART:
-      return state, (products = [...products, action.item])
+      return action.items
 
     default:
       return state

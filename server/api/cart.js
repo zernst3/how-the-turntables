@@ -25,7 +25,7 @@ router.post('/:id', async (req, res, next) => {
     let product = await Product.findByPk(parseInt(req.params.id))
     product = product.dataValues
     product.OrderItem = {}
-    product.OrderItem.quantity = product.OrderItem.quantity + req.body.quantity
+    product.OrderItem.quantity = req.body.quantity
 
     // If user is logged in, make cart equal to cart in database and add item to the cart
     if (req.session.passport && req.session.passport.user) {
