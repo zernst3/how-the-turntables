@@ -14,10 +14,6 @@ class Cart extends React.Component {
     this.updateQuantity = this.updateQuantity.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getCart()
-  }
-
   async removeItem(id) {
     await this.props.removeItemFromCart(id)
   }
@@ -72,7 +68,6 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getCart: () => dispatch(getCart()),
     removeItemFromCart: (id) => dispatch(removeItemFromCart(id)),
     updateQuantity: (id, quantity) => dispatch(updateQuantity(id, quantity)),
   }

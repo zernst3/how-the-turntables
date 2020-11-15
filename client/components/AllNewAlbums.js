@@ -4,6 +4,7 @@ import Album from './Album'
 import {fetchNewAlbums} from '../store/allNewAlbums'
 import {buy} from '../store'
 import {Link} from 'react-router-dom'
+
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
     this.props.fetchNewAlbums()

@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import axios from 'axios'
 import history from '../history'
 import store from './index'
@@ -73,20 +74,27 @@ export const updateQuantity = (itemId, quantity) => {
 export const buy = (id) => {
   return async (dispatch) => {
     try {
-      // const res = await axios.get('/api/cart')
-      const response = await axios.post(`/api/cart/${id}`, {quantity: 1})
-      console.log(response.data.products)
-      const exists = await response.data.products.filter(
-        (product) => product.id === id
-      )
-      // if (exists[0].id) {
-      //   alert('Item already in cart')
-      // } else {
-      //   alert('Item Added to Cart')
-      // }
-      // const cart = {...store.getState().cart, products}
-      // dispatch()
-      // dispatch(updateUser)
+      const cartItem = store
+        .getState()
+        .cart.products.filter((product) => product.id === id)
+
+      let res
+
+      if (cartItem[0]) {
+        if (cartItem[0].OrderItem.quantity === 10) {
+          alert('Maximum Amount In Cart')
+          return
+        }
+        res = await axios.post(`/api/cart/${id}`, {
+          quantity: parseInt(cartItem[0].OrderItem.quantity) + 1,
+        })
+        alert('Item Already in Cart And Updated')
+      } else {
+        res = await axios.post(`/api/cart/${id}`, {quantity: 1})
+        alert('Item Added To Cart')
+      }
+
+      dispatch(setCart(res.data))
     } catch (error) {
       console.log(error)
     }
