@@ -3,6 +3,8 @@ import history from '../history'
 import store from './index'
 import Cookie from 'js-cookie'
 
+// cookie v2.0
+
 /**
  * ACTION TYPES
  */
@@ -21,7 +23,6 @@ const getInitialState = () => {
  * INITIAL STATE
  */
 const defaultCart = []
-
 /**
  * ACTION CREATORS
  */
