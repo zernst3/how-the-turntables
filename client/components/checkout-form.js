@@ -25,15 +25,7 @@ const CheckoutForm = (props) => {
 
         <div className="form-block">
           <h3>Credit Card:</h3>
-          <label htmlFor="selectedCreditCard.fullName">
-            Name on Credit Card:
-          </label>
-          <input
-            type="text"
-            name="selectedCreditCard.fullName"
-            value={selectedCreditCard.fullName || ''}
-            onChange={(evt) => handleChange(evt)}
-          />
+
           <label htmlFor="selectedCreditCard">Choose a credit card:</label>
           <select
             name="selectedCreditCard"
@@ -68,6 +60,15 @@ const CheckoutForm = (props) => {
                 </option>
               ))}
           </select>
+          <label htmlFor="selectedCreditCard.fullName">
+            Name on Credit Card:
+          </label>
+          <input
+            type="text"
+            name="selectedCreditCard.fullName"
+            value={selectedCreditCard.fullName || ''}
+            onChange={(evt) => handleChange(evt)}
+          />
           <label htmlFor="selectedCreditCard.creditCardNumber">
             Credit Card Number:
           </label>
