@@ -70,6 +70,29 @@ export const updateQuantity = (itemId, quantity) => {
   }
 }
 
+export const buy = (id) => {
+  return async (dispatch) => {
+    try {
+      // const res = await axios.get('/api/cart')
+      const response = await axios.post(`/api/cart/${id}`, {quantity: 1})
+      console.log(response.data.products)
+      const exists = await response.data.products.filter(
+        (product) => product.id === id
+      )
+      // if (exists[0].id) {
+      //   alert('Item already in cart')
+      // } else {
+      //   alert('Item Added to Cart')
+      // }
+      // const cart = {...store.getState().cart, products}
+      // dispatch()
+      // dispatch(updateUser)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
