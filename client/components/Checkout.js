@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
 import {getUserCheckout} from '../store'
@@ -139,12 +140,12 @@ class Checkout extends React.Component {
               <strong>Total:</strong> ${(this.state.total / 100).toFixed(2)}
             </div>
             <CheckoutForm
-              email={this.state.email}
-              creditCards={this.state.creditCards}
-              selectedCreditCard={this.state.selectedCreditCard}
-              addresses={this.state.addresses}
-              selectedBillingAddress={this.state.selectedBillingAddress}
-              selectedShippingAddress={this.state.selectedShippingAddress}
+              email={this.state.email || ''}
+              creditCards={this.state.creditCards || []}
+              selectedCreditCard={this.state.selectedCreditCard || {}}
+              addresses={this.state.addresses || []}
+              selectedBillingAddress={this.state.selectedBillingAddress || {}}
+              selectedShippingAddress={this.state.selectedShippingAddress || {}}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
             />

@@ -49,6 +49,7 @@ const usersForPostico = [
     email: 'boustanip718@gmail.com',
     phoneNumber: 6584611568,
     password: 'kstlsihc',
+    confirmPassword: 'kstlsihc',
     salt: 'okaodudnwod',
     googleId: 'boustanip718',
     imageUrl:
@@ -62,6 +63,7 @@ const usersForPostico = [
     email: 'agne.urbaityte@gmail.com',
     phoneNumber: 1112223344,
     password: 'vjbdfbn',
+    confirmPassword: 'vjbdfbn',
     salt: 'lkndflknfd',
     googleId: 'agne.urbaityte',
     imageUrl:
@@ -75,6 +77,7 @@ const usersForPostico = [
     email: 'thepeopleschamp@gmail.com',
     phoneNumber: 3336668888,
     password: 'captainfalcon',
+    confirmPassword: 'captainfalcon',
     salt: 'isthegoat',
     googleId: 'bobby.scar',
     imageUrl:
