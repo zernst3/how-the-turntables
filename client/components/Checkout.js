@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
-import {getUserCheckout} from '../store'
+import {getUserCheckout, checkout} from '../store'
 import {Link} from 'react-router-dom'
 import './checkout.css'
 import CheckoutForm from './checkout-form'
@@ -20,6 +20,7 @@ class Checkout extends React.Component {
       addresses: [],
       selectedBillingAddress: {},
       selectedShippingAddress: {},
+      orderCompleted: false,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -64,6 +65,19 @@ class Checkout extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.setState({orderCompleted: true})
+    const {
+      email,
+      selectedCreditCard,
+      selectedBillingAddress,
+      selectedShippingAddress,
+    } = this.state
+    this.props.checkout({
+      email,
+      selectedCreditCard,
+      selectedBillingAddress,
+      selectedShippingAddress,
+    })
   }
 
   handleChange(event) {
@@ -102,7 +116,9 @@ class Checkout extends React.Component {
       <div id="checkout">
         <h1>Checkout:</h1>
 
-        {products && products.length > 0 ? (
+        {this.state.orderCompleted ? (
+          <h1>Thank you for your order</h1>
+        ) : !this.state.orderCompleted && products && products.length > 0 ? (
           <React.Fragment>
             <table>
               <thead>
@@ -150,7 +166,7 @@ class Checkout extends React.Component {
               handleSubmit={this.handleSubmit}
             />
           </React.Fragment>
-        ) : products && products.length === 0 ? (
+        ) : !this.state.orderCompleted && products && products.length === 0 ? (
           <h1>
             <Link to="/home">Your cart is empty, continue shopping</Link>
           </h1>
@@ -174,6 +190,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getUserCheckout: () => dispatch(getUserCheckout()),
+    checkout: (checkoutData) => dispatch(checkout(checkoutData)),
   }
 }
 

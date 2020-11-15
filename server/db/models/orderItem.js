@@ -8,6 +8,15 @@ const OrderItem = db.define('OrderItem', {
   itemPriceAtTimeOfPurchase: {
     type: Sequelize.INTEGER,
   },
+  shippingAddressAtTimeOfPurchase: {
+    type: Sequelize.STRING,
+  },
+  billingAddressAtTimeOfPurchase: {
+    type: Sequelize.STRING,
+  },
+  creditCardNumberAtTimeOfPurchase: {
+    type: Sequelize.STRING,
+  },
 })
 
 module.exports = OrderItem

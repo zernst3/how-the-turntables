@@ -8,12 +8,15 @@ const SET_USER_CHECKOUT = 'SET_USER_CHECKOUT'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUserCheckout = {}
 
 /**
  * ACTION CREATORS
  */
-const setUser = (userCheckout) => ({type: SET_USER_CHECKOUT, userCheckout})
+const setUserCheckout = (userCheckout) => ({
+  type: SET_USER_CHECKOUT,
+  userCheckout,
+})
 
 /**
  * THUNK CREATORS
@@ -21,16 +24,25 @@ const setUser = (userCheckout) => ({type: SET_USER_CHECKOUT, userCheckout})
 export const getUserCheckout = () => async (dispatch) => {
   try {
     const res = await axios.get(`/api/checkout/`)
-    dispatch(setUser(res.data || defaultUser))
+    dispatch(setUserCheckout(res.data || defaultUserCheckout))
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const checkout = (checkoutData) => async (dispatch) => {
+  try {
+    await axios.post(`/api/checkout/`, {checkoutData})
+    dispatch(setUserCheckout(defaultUserCheckout))
+  } catch (err) {
+    console.log(err)
   }
 }
 
 /**
  * REDUCER
  */
-export default function (state = defaultUser, action) {
+export default function (state = defaultUserCheckout, action) {
   switch (action.type) {
     case SET_USER_CHECKOUT:
       return action.userCheckout

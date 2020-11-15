@@ -25,7 +25,9 @@ export class Navbar extends React.Component {
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
-              <Link to="/cart">Cart {cart.products.length}</Link>
+              <Link to="/cart">
+                Cart {cart.products && cart.products.length}
+              </Link>
             </div>
           ) : (
             <div>
