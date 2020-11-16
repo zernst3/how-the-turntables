@@ -1,7 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Album from './Album'
-import {fetchNewAlbums, buy} from '../store/allNewAlbums'
+import {fetchNewAlbums} from '../store/allNewAlbums'
+import {buy} from '../store'
 import {Link} from 'react-router-dom'
 
 export class AllNewAlbums extends React.Component {
@@ -46,7 +47,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchNewAlbums: () => dispatch(fetchNewAlbums()),
-    buy: (id) => dispatch(buy(id)),
+    buy: (id) => {
+      dispatch(buy(id))
+    },
   }
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const router = require('express').Router()
 module.exports = router
 const {Order, Product, OrderItem} = require('../db/models')
@@ -10,6 +11,10 @@ router.get('/', async (req, res, next) => {
 
     if (!req.session.cart) {
       req.session.cart = {products: []}
+    }
+
+    if (!req.session.cart.products) {
+      req.session.cart.products = []
     }
 
     res.json(req.session.cart)

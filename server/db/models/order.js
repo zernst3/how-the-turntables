@@ -17,6 +17,15 @@ const Order = db.define('order', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
+  shippingAddressAtTimeOfPurchase: {
+    type: Sequelize.STRING,
+  },
+  billingAddressAtTimeOfPurchase: {
+    type: Sequelize.STRING,
+  },
+  creditCardNumberAtTimeOfPurchase: {
+    type: Sequelize.STRING,
+  },
 })
 
 module.exports = Order
