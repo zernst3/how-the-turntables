@@ -137,7 +137,9 @@ const CheckoutForm = (props) => {
                 </option>
               ))}
           </select>
-          <label htmlFor="selectedBillingAddress.fullName">Address Name:</label>
+          <label htmlFor="selectedBillingAddress.fullName">
+            Name of Recipient:
+          </label>
           <input
             type="text"
             name="selectedBillingAddress.fullName"
@@ -205,7 +207,7 @@ const CheckoutForm = (props) => {
               ))}
           </select>
           <label htmlFor="selectedShippingAddress.fullName">
-            Address Name:
+            Name of Recipient:
           </label>
           <input
             type="text"
