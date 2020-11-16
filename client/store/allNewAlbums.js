@@ -25,86 +25,6 @@ export const updateAlbum = (album) => ({
   album,
 })
 
-const dummyData = [
-  {
-    id: 1,
-    band: 'U2',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 2,
-    band: 'U3',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 3,
-    band: 'U24',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 4,
-    band: 'U332',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 5,
-    band: 'U22',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 6,
-    band: 'U28',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 7,
-    band: 'U32',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 8,
-    band: 'U23',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 9,
-    band: 'U222',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 10,
-    band: 'U12',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-  {
-    id: 11,
-    band: 'U21',
-    name: 'Joshua Three',
-    imageUrl:
-      'https://cdn.shopify.com/s/files/1/0020/7595/1149/products/U2T71591_655b63c3-67fd-454e-9862-dd8fe97c1f1d_2000x.jpg?v=1561047650',
-  },
-]
-
 // return dispatch => {
 //   dispatch(setAlbums(dummyData))
 // }
@@ -144,7 +64,8 @@ export const thunkToDeleteAlbum = (albumId) => {
 export const thunkToUpdateAlbum = (album) => {
   return async (dispatch) => {
     try {
-      const {data} = await Axios.put(`/api/products/${album.id}`, album)
+      const {data} = await Axios.post(`/api/products`, album)
+      console.log(data)
       dispatch(updateAlbum(data))
     } catch (error) {
       console.log(error)
@@ -172,11 +93,11 @@ export default function albumsReducer(state = initialState, action) {
     case SET_ALBUMS:
       return action.albums
     case ADD_NEW_ALBUM:
-      return [...state.albums, action.album]
+      return [...state, action.album]
     case DELETE_ALBUM:
-      return state.albums.filter((album) => album.id !== action.albumId)
+      return state.filter((album) => album.id !== action.albumId)
     case UPDATE_ALBUM:
-      return state.albums.map((album) => {
+      return state.map((album) => {
         if (album.id === action.album.id) return action.album
         else return album
       })

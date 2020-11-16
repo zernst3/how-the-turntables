@@ -28,8 +28,33 @@ router.get('/:productId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newProduct = await Product.create(req.body)
-    res.json(newProduct)
+    const {
+      albumTitle,
+      artistName,
+      image,
+      price,
+      songList,
+      releaseYear,
+      category,
+      inventory,
+      id,
+    } = req.body
+
+    const newAlbum = {
+      id,
+      title: albumTitle,
+      artistName,
+      imageUrl: image,
+      price,
+      songList: songList,
+      releaseYear,
+      category,
+      inventory,
+    }
+
+    const newProduct = await Product.upsert(newAlbum, {returning: true})
+
+    res.json(newProduct[0].dataValues)
   } catch (error) {
     next(error)
   }
@@ -46,13 +71,6 @@ router.delete('/:productId', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-})
-
-router.put('/:productId', (req, res, next) => {
-  Product.findByPk(req.params.productId)
-    .then((product) => product.update(req.body))
-    .then((product) => res.json(product))
-    .catch(next)
 })
 
 module.exports = router

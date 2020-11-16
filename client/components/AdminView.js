@@ -13,7 +13,9 @@ export class AdminView extends React.Component {
   constructor() {
     super()
     this.state = {
-      showForm: false,
+      showAddForm: false,
+      showEditForm: false,
+      currentlyEditingAlbum: undefined,
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -21,9 +23,10 @@ export class AdminView extends React.Component {
     this.props.fetchNewAlbums()
   }
 
-  handleClick() {
+  handleClick(form, currentlyEditingAlbum) {
     return this.setState({
-      showForm: !this.state.showForm,
+      [form]: !this.state[form],
+      currentlyEditingAlbum: currentlyEditingAlbum,
     })
   }
 
@@ -32,10 +35,14 @@ export class AdminView extends React.Component {
       <div className="allAlbums">
         <h1>All Albums</h1>
         <div id="newAlbumButton">
-          <button type="button" id="add-album" onClick={this.handleClick}>
+          <button
+            type="button"
+            id="add-album"
+            onClick={() => this.handleClick('showAddForm')}
+          >
             Add Album
           </button>
-          {this.state.showForm ? (
+          {this.state.showAddForm ? (
             <ConnectedAdminNewAlbum albums={this.props.albums} />
           ) : null}
         </div>
@@ -54,18 +61,20 @@ export class AdminView extends React.Component {
                   songList={album.songList}
                   releaseYear={album.releaseYear}
                   category={album.category}
+                  adminView={true}
                 />
 
                 <div id="editAlbumButton">
                   <button
                     type="button"
                     id="edit-album"
-                    onClick={this.handleClick}
+                    onClick={() => this.handleClick('showEditForm', album.id)}
                   >
                     Edit Album
                   </button>
-                  {this.state.showForm ? (
-                    <ConnectedAdminUpdateAlbum album={this.props.album} />
+                  {this.state.showEditForm &&
+                  this.state.currentlyEditingAlbum === album.id ? (
+                    <ConnectedAdminUpdateAlbum album={album} />
                   ) : null}
                 </div>
               </div>

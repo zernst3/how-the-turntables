@@ -46,6 +46,16 @@ const AdminFormProduct = (props) => {
         </label>
         <br />
         <label>
+          Inventory{' '}
+          <input
+            type="number"
+            name="inventory"
+            onChange={props.handleChange}
+            value={props.inventory}
+          />
+        </label>
+        <br />
+        <label>
           Song List:{' '}
           <input
             type="text"

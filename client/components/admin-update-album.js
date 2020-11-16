@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {thunkToUpdateAlbum, fetchNewAlbums} from '../store/allNewAlbums'
+import {thunkToUpdateAlbum} from '../store/allNewAlbums'
 import AdminFormProduct from './admin-form-product'
 
 class AdminUpdateAlbum extends React.Component {
@@ -19,17 +19,17 @@ class AdminUpdateAlbum extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  async componentDidMount() {
-    await this.props.fetchNewAlbums()
+  componentDidMount() {
     this.setState({
       id: this.props.album.id,
-      albumTitle: this.props.album.albumTitle,
+      albumTitle: this.props.album.title,
       artistName: this.props.album.artistName,
-      image: this.props.album.image,
+      image: this.props.album.imageUrl,
       price: this.props.album.price,
       songList: this.props.album.songList,
       releaseYear: this.props.album.releaseYear,
       category: this.props.album.category,
+      inventory: this.props.album.inventory,
     })
   }
   handleChange(event) {
@@ -82,7 +82,6 @@ const mapDispatch = (dispatch) => {
   return {
     thunkToUpdateAlbum: (updatedAlbum) =>
       dispatch(thunkToUpdateAlbum(updatedAlbum)),
-    fetchNewAlbums: () => dispatch(fetchNewAlbums()),
   }
 }
 
