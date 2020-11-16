@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import axios from 'axios'
 import history from '../history'
 import store from './index'
@@ -21,14 +22,24 @@ export const getInitialState = () => {
   console.log('NO COOKIE DATA EXISTS')
   return []
 }
+
 /**
  * INITIAL STATE
  */
-const defaultCart = []
+export const defaultCart = {
+  products: getInitialState(),
+}
+
 /**
  * ACTION CREATORS
  */
-export const setCart = (cart) => ({type: SET_CART, cart})
+export const setCart = (cart) => {
+  return (dispatch) => {
+    Cookie.remove('cart')
+    Cookie.set('cart', cart)
+    dispatch({type: SET_CART, cart})
+  }
+}
 
 /**
  * THUNK CREATORS
@@ -81,10 +92,35 @@ export const updateQuantity = (itemId, quantity) => {
   }
 }
 
-export const updateCart = (items) => ({
-  type: UPDATE_CART,
-  items,
-})
+export const buy = (id) => {
+  return async (dispatch) => {
+    try {
+      const cartItem = store
+        .getState()
+        .cart.products.filter((product) => product.id === id)
+
+      let res
+
+      if (cartItem[0]) {
+        if (cartItem[0].OrderItem.quantity === 10) {
+          alert('Maximum Amount In Cart')
+          return
+        }
+        res = await axios.post(`/api/cart/${id}`, {
+          quantity: parseInt(cartItem[0].OrderItem.quantity) + 1,
+        })
+        alert('Item Already in Cart And Updated')
+      } else {
+        res = await axios.post(`/api/cart/${id}`, {quantity: 1})
+        alert('Item Added To Cart')
+      }
+
+      dispatch(setCart(res.data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 /**
  * REDUCER

@@ -20,31 +20,6 @@ export const fetchNewAlbums = () => {
   }
 }
 
-export const buy = (id) => {
-  return async (dispatch, getState) => {
-    try {
-      const stat = getState()
-      const cart = stat.cart
-      console.log('STAT FROM THUNK GETSTATE', stat)
-      const response = await Axios.post(`/api/cart/${id}`, {quantity: 1})
-      const {data} = response
-
-      console.log('DATA PRODUCTS THAT CAME FROM DB', data.products)
-      dispatch(updateCart(data.products))
-
-      const stat2 = getState()
-      //     console.log('STATE.cart', stat2)
-
-      Cookie.remove('cart')
-
-      Cookie.set('cart', JSON.stringify(data.products))
-      //      console.log('JSON BACK', JSON.parse(Cookie.get('cart')))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
-
 const initialState = []
 
 export default function albumsReducer(state = initialState, action) {

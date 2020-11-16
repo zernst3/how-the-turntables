@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Cart} from './components'
-import {me} from './store'
+import {Login, Signup, UserHome, Cart, Checkout} from './components'
+import {me, getCart} from './store'
 import AllNewAlbums from './components/AllNewAlbums'
 import SingleAlbum from './components/SingleAlbum'
 /**
@@ -12,6 +12,7 @@ import SingleAlbum from './components/SingleAlbum'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.getCart()
   }
 
   render() {
@@ -19,11 +20,14 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={AllNewAlbums} />
         <Route path="/album/:id" component={SingleAlbum} />
         <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
+        <Redirect from="/" to="/home" />
       </Switch>
     )
   }
@@ -50,9 +54,11 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData() {
-      dispatch(me())
-    },
+    // loadInitialData() {
+    //   dispatch(me())
+    // },
+    loadInitialData: () => dispatch(me()),
+    getCart: () => dispatch(getCart()),
   }
 }
 
