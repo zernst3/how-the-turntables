@@ -44,33 +44,59 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const products = req.session.cart.products
-    // console.log(req.body.checkoutData)
-    // console.log(req.session.cart)
-    // Change order from 'Current Cart' to 'Old Order', Change order delivery status to 'Pending'
-    // Order.update(
-    //   {
-    //     status: 'Old Order',
-    //     deliveryStatus: 'Pending',
-    //   },
-    //   {
-    //     where: {
-    //       id: req.session.cart.id,
-    //     },
-    //   }
-    // )
+    const {
+      email,
+      selectedCreditCard,
+      selectedBillingAddress,
+      selectedShippingAddress,
+    } = req.body.checkoutData
 
-    // For each product in cart
-    // Change OrderItem itemPriceAtTimeOfPurchase to equal the product price in the session store, shipping address, billing address, credit card number (last 4 digits)
-    // Find product in the database and update its inventory
-    // for (let i = 0; i < products.length; i++) {
-    //   const foundProduct = await Product.findByPk(products[i].id)
-    //   const newInventory =
-    //     foundProduct.dataValues.inventory - products[i].OrderItem.quantity
-    //   await foundProduct.update({inventory: newInventory})
-    // }
+    const products = req.session.cart.products
+
+    // Change order from 'Current Cart' to 'Old Order', Change order delivery status to 'Pending', shipping address, billing address, credit card number (last 4 digits)
+    Order.update(
+      {
+        status: 'Old Order',
+        deliveryStatus: 'Pending',
+        shippingAddressAtTimeOfPurchase: JSON.stringify(
+          selectedShippingAddress
+        ),
+        billingAddressAtTimeOfPurchase: JSON.stringify(selectedBillingAddress),
+        creditCardNumberAtTimeOfPurchase: selectedCreditCard.creditCardNumber.slice(
+          selectedCreditCard.creditCardNumber.length - 4
+        ),
+      },
+      {
+        where: {
+          id: req.session.cart.id,
+        },
+      }
+    )
+
+    // For each product in cart find product in the database and update its inventory
+    for (let i = 0; i < products.length; i++) {
+      // Update the inventory
+      const foundProduct = await Product.findByPk(products[i].id)
+      const newInventory =
+        foundProduct.dataValues.inventory - products[i].OrderItem.quantity
+      await foundProduct.update({inventory: newInventory})
+
+      // Change OrderItem itemPriceAtTimeOfPurchase to equal the product price in the session store
+      await OrderItem.update(
+        {
+          itemPriceAtTimeOfPurchase: products[i].price,
+        },
+        {
+          where: {
+            orderId: req.session.cart.id,
+            productId: products[i].id,
+          },
+        }
+      )
+    }
 
     // Clear session cart
+    req.session.cart = {}
   } catch (error) {
     next(error)
   }
