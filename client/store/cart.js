@@ -16,10 +16,8 @@ const UPDATE_CART = 'UPDATE_CART'
 export const getInitialState = () => {
   const cookieData = Cookie.get('cart')
   if (cookieData) {
-    console.log('COOKIE DATA EXISTS')
     return JSON.parse(cookieData)
   }
-  console.log('NO COOKIE DATA EXISTS')
   return []
 }
 
