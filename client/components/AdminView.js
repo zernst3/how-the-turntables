@@ -1,11 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Album from './Album'
-import {
-  fetchNewAlbums,
-  thunkToAddNewAlbum,
-  thunkToUpdateAlbum,
-} from '../store/allNewAlbums'
+import {fetchNewAlbums, thunkToDeleteAlbum} from '../store/allNewAlbums'
 import ConnectedAdminNewAlbum from './admin-new-album'
 import ConnectedAdminUpdateAlbum from './admin-update-album'
 
@@ -18,6 +14,7 @@ export class AdminView extends React.Component {
       currentlyEditingAlbum: undefined,
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
   componentDidMount() {
     this.props.fetchNewAlbums()
@@ -28,6 +25,12 @@ export class AdminView extends React.Component {
       [form]: !this.state[form],
       currentlyEditingAlbum: currentlyEditingAlbum,
     })
+  }
+
+  async handleDelete(productId) {
+    await this.props.deleteAlbum(productId)
+    await this.props.fetchNewAlbums()
+    this.setState()
   }
 
   render() {
@@ -83,6 +86,15 @@ export class AdminView extends React.Component {
                     />
                   ) : null}
                 </div>
+
+                <button
+                  type="button"
+                  id="delete"
+                  name="deleteAlbum"
+                  onClick={() => this.handleDelete(album.id)}
+                >
+                  Delete
+                </button>
               </div>
             )
           })}
@@ -102,6 +114,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchNewAlbums: () => dispatch(fetchNewAlbums()),
+    deleteAlbum: (productId) => dispatch(thunkToDeleteAlbum(productId)),
   }
 }
 
