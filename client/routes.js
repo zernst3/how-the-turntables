@@ -6,6 +6,7 @@ import {Login, Signup, UserHome, Cart} from './components'
 import {me} from './store'
 import AllNewAlbums from './components/AllNewAlbums'
 import SingleAlbum from './components/SingleAlbum'
+import AdminView from './components/AdminView'
 /**
  * COMPONENT
  */
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route path="/home" component={AllNewAlbums} />
         <Route path="/album/:id" component={SingleAlbum} />
         <Route path="/cart" component={Cart} />
+        <Route path="/admin" component={AdminView} />
       </Switch>
     )
   }

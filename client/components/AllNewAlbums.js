@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Album from './Album'
 import {fetchNewAlbums, buy} from '../store/allNewAlbums'
 import {Link} from 'react-router-dom'
+
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
     this.props.fetchNewAlbums()

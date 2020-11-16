@@ -12,8 +12,8 @@ router.get('/', async (req, res, next) => {
       // attributes: ['id', 'email']
     })
     res.json(products)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -24,6 +24,35 @@ router.get('/:productId', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body)
+    res.json(newProduct)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:productId', async (req, res, next) => {
+  try {
+    await Product.destroy({
+      where: {
+        id: {[Op.eq]: req.params.productId},
+      },
+    })
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:productId', (req, res, next) => {
+  Product.findByPk(req.params.productId)
+    .then((product) => product.update(req.body))
+    .then((product) => res.json(product))
+    .catch(next)
 })
 
 module.exports = router
