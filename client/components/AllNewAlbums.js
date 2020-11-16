@@ -2,10 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Album from './Album'
 import {fetchNewAlbums, buy} from '../store/allNewAlbums'
-import {Link} from 'react-router-dom'
+import {getCart, getInitialState, setCart} from '../store/cart'
+
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
     this.props.fetchNewAlbums()
+    //  const initState =this.props.getInitialState()
+    //  console.log(initState, 'INITSTATE')
+    //  this.props.setCart()
   }
 
   render() {
@@ -46,6 +50,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchNewAlbums: () => dispatch(fetchNewAlbums()),
     buy: (id) => dispatch(buy(id)),
+    getCart: () => dispatch(getCart()),
+    // getInitialState: () => dispatch(getInitialState()),
+    // setCart: (cart) => dispatch(setCart(cart))
   }
 }
 

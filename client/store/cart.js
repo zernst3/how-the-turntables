@@ -12,11 +12,13 @@ const SET_CART = 'SET_CART'
 
 const UPDATE_CART = 'UPDATE_CART'
 
-const getInitialState = () => {
+export const getInitialState = () => {
   const cookieData = Cookie.get('cart')
   if (cookieData) {
+    console.log('COOKIE DATA EXISTS')
     return JSON.parse(cookieData)
   }
+  console.log('NO COOKIE DATA EXISTS')
   return []
 }
 /**
@@ -26,7 +28,7 @@ const defaultCart = []
 /**
  * ACTION CREATORS
  */
-const setCart = (cart) => ({type: SET_CART, cart})
+export const setCart = (cart) => ({type: SET_CART, cart})
 
 /**
  * THUNK CREATORS
@@ -87,6 +89,7 @@ export const updateCart = (items) => ({
 /**
  * REDUCER
  */
+
 export default function (state = defaultCart, action) {
   switch (action.type) {
     case SET_CART:

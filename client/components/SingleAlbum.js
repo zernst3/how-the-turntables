@@ -17,8 +17,10 @@ export class SingleAlbum extends React.Component {
       category,
       price,
     } = this.props.album
+
     const name = title
     const band = artistName
+
     if (!this.props.album) {
       return <div>Album loading...</div>
     }
