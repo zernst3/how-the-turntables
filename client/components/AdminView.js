@@ -43,7 +43,10 @@ export class AdminView extends React.Component {
             Add Album
           </button>
           {this.state.showAddForm ? (
-            <ConnectedAdminNewAlbum albums={this.props.albums} />
+            <ConnectedAdminNewAlbum
+              handleClick={this.handleClick}
+              albums={this.props.albums}
+            />
           ) : null}
         </div>
 
@@ -74,7 +77,10 @@ export class AdminView extends React.Component {
                   </button>
                   {this.state.showEditForm &&
                   this.state.currentlyEditingAlbum === album.id ? (
-                    <ConnectedAdminUpdateAlbum album={album} />
+                    <ConnectedAdminUpdateAlbum
+                      handleClick={this.handleClick}
+                      album={album}
+                    />
                   ) : null}
                 </div>
               </div>

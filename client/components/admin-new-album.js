@@ -25,15 +25,7 @@ class AdminNewAlbum extends React.Component {
   }
   async handleSubmit(event) {
     event.preventDefault()
-    // const newAlbum = {
-    //   albumTitle: this.state.albumTitle,
-    //   artistName: this.state.artistName,
-    //   image: this.state.image,
-    //   price: this.state.price,
-    //   songList: this.state.songList,
-    //   releaseYear: this.state.releaseYear,
-    //   category: this.state.category,
-    // }
+    this.props.handleClick('showAddForm', undefined)
     const newAlbum = this.state
     await this.props.thunkToAddNewAlbum(newAlbum)
     this.setState({

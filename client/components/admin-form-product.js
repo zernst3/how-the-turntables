@@ -12,6 +12,7 @@ const AdminFormProduct = (props) => {
             name="albumTitle"
             onChange={props.handleChange}
             value={props.albumTitle}
+            required
           />
         </label>
         <br />
@@ -22,6 +23,7 @@ const AdminFormProduct = (props) => {
             name="artistName"
             onChange={props.handleChange}
             value={props.artistName}
+            required
           />
         </label>
         <br />
@@ -42,6 +44,7 @@ const AdminFormProduct = (props) => {
             name="price"
             onChange={props.handleChange}
             value={props.price}
+            required
           />
         </label>
         <br />
@@ -52,6 +55,7 @@ const AdminFormProduct = (props) => {
             name="inventory"
             onChange={props.handleChange}
             value={props.inventory}
+            required
           />
         </label>
         <br />

@@ -11,7 +11,6 @@ const Album = ({
   releaseYear,
   category,
   price,
-  buy,
   adminView,
 }) => {
   return (

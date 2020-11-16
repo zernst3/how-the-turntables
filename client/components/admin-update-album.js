@@ -39,6 +39,7 @@ class AdminUpdateAlbum extends React.Component {
   }
   async handleSubmit(event) {
     event.preventDefault()
+    this.props.handleClick('showEditForm', undefined)
     const updatedAlbum = {
       id: this.state.id,
       albumTitle: this.state.albumTitle,
