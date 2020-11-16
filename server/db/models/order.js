@@ -26,6 +26,9 @@ const Order = db.define('order', {
   creditCardNumberAtTimeOfPurchase: {
     type: Sequelize.STRING,
   },
+  emailOfPurchase: {
+    type: Sequelize.STRING,
+  },
 })
 
 module.exports = Order

@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
-import {getUserCheckout, checkout} from '../store'
+import {getUserCheckout, checkout, setCart, defaultCart} from '../store'
 import {Link} from 'react-router-dom'
 import './checkout.css'
 import CheckoutForm from './checkout-form'
@@ -65,6 +65,7 @@ class Checkout extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    this.props.setCart(defaultCart)
     this.setState({orderCompleted: true})
     const {
       email,
@@ -191,6 +192,7 @@ const mapDispatch = (dispatch) => {
   return {
     getUserCheckout: () => dispatch(getUserCheckout()),
     checkout: (checkoutData) => dispatch(checkout(checkoutData)),
+    setCart: (cart) => dispatch(setCart(cart)),
   }
 }
 
