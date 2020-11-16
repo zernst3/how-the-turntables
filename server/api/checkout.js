@@ -1,6 +1,7 @@
 /* eslint-disable guard-for-in */
 const router = require('express').Router()
-const Sequelize = require('sequelize')
+const nodemailer = require('nodemailer')
+
 const {
   User,
   Address,
@@ -97,6 +98,37 @@ router.post('/', async (req, res, next) => {
 
     // Clear session cart
     req.session.cart = {}
+    res.sendStatus(200)
+
+    // ===================================
+    // Nodemailer Code
+    // ===================================
+    // 1. Transporter
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    })
+
+    // 2.
+    let mailOptions = {
+      from: 'donotreply@howtheturntables.com',
+      to: email,
+      subject: 'Thank You for your Order',
+      html: `<h1>This is a test</h1>
+      <p>Look at this, if you received this email, that means I have gotten nodemailer to work :)</p>`,
+    }
+
+    // 3.
+    transporter.sendMail(mailOptions, function (err, data) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('Email Sent Successfully')
+      }
+    })
   } catch (error) {
     next(error)
   }

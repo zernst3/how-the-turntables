@@ -11,14 +11,14 @@ const SET_CART = 'SET_CART'
 /**
  * INITIAL STATE
  */
-const defaultCart = {
+export const defaultCart = {
   products: [],
 }
 
 /**
  * ACTION CREATORS
  */
-const setCart = (cart) => ({type: SET_CART, cart})
+export const setCart = (cart) => ({type: SET_CART, cart})
 
 /**
  * THUNK CREATORS

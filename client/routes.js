@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Cart, Checkout} from './components'
-import {me} from './store'
+import {me, getCart} from './store'
 import AllNewAlbums from './components/AllNewAlbums'
 import SingleAlbum from './components/SingleAlbum'
 /**
@@ -12,6 +12,7 @@ import SingleAlbum from './components/SingleAlbum'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.getCart()
   }
 
   render() {
@@ -53,9 +54,11 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData() {
-      dispatch(me())
-    },
+    // loadInitialData() {
+    //   dispatch(me())
+    // },
+    loadInitialData: () => dispatch(me()),
+    getCart: () => dispatch(getCart()),
   }
 }
 

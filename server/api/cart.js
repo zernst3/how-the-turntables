@@ -13,6 +13,10 @@ router.get('/', async (req, res, next) => {
       req.session.cart = {products: []}
     }
 
+    if (!req.session.cart.products) {
+      req.session.cart.products = []
+    }
+
     res.json(req.session.cart)
   } catch (error) {
     next(error)
