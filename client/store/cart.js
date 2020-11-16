@@ -2,23 +2,42 @@
 import axios from 'axios'
 import history from '../history'
 import store from './index'
+import Cookie from 'js-cookie'
+
+// cookie v2.0
 
 /**
  * ACTION TYPES
  */
 const SET_CART = 'SET_CART'
 
+const UPDATE_CART = 'UPDATE_CART'
+
+export const getInitialState = () => {
+  const cookieData = Cookie.get('cart')
+  if (cookieData) {
+    return JSON.parse(cookieData)
+  }
+  return []
+}
+
 /**
  * INITIAL STATE
  */
 export const defaultCart = {
-  products: [],
+  products: getInitialState(),
 }
 
 /**
  * ACTION CREATORS
  */
-export const setCart = (cart) => ({type: SET_CART, cart})
+export const setCart = (cart) => {
+  return (dispatch) => {
+    Cookie.remove('cart')
+    Cookie.set('cart', cart)
+    dispatch({type: SET_CART, cart})
+  }
+}
 
 /**
  * THUNK CREATORS
@@ -104,10 +123,15 @@ export const buy = (id) => {
 /**
  * REDUCER
  */
+
 export default function (state = defaultCart, action) {
   switch (action.type) {
     case SET_CART:
       return action.cart
+
+    case UPDATE_CART:
+      return action.items
+
     default:
       return state
   }

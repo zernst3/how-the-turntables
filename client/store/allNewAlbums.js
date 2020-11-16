@@ -1,4 +1,6 @@
 import Axios from 'axios'
+import {updateCart} from './index'
+import Cookie from 'js-cookie'
 
 const SET_ALBUMS = 'SET_ALBUMS'
 const ADD_NEW_ALBUM = 'ADD_NEW_ALBUM'
@@ -9,6 +11,7 @@ export const setAlbums = (albums) => ({
   type: SET_ALBUMS,
   albums,
 })
+
 
 export const addNewAlbum = (album) => ({
   type: ADD_NEW_ALBUM,
@@ -25,9 +28,7 @@ export const updateAlbum = (album) => ({
   album,
 })
 
-// return dispatch => {
-//   dispatch(setAlbums(dummyData))
-// }
+
 export const fetchNewAlbums = () => {
   return async (dispatch) => {
     try {
