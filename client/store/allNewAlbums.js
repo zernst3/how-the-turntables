@@ -101,19 +101,6 @@ export const fetchNewAlbums = () => {
   }
 }
 
-export const buy = (id) => {
-  return async (dispatch) => {
-    try {
-      const response = await Axios.post(`/api/cart/${id}`, {quantity: 1})
-      console.log('id', id)
-      console.log('!!Response', response)
-      // dispatch(updateUser)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
-
 const initialState = []
 
 export default function albumsReducer(state = initialState, action) {
