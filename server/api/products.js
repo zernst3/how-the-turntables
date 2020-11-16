@@ -12,8 +12,8 @@ router.get('/', async (req, res, next) => {
       // attributes: ['id', 'email']
     })
     res.json(products)
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -21,6 +21,53 @@ router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId)
     res.json(product)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const {
+      albumTitle,
+      artistName,
+      image,
+      price,
+      songList,
+      releaseYear,
+      category,
+      inventory,
+      id,
+    } = req.body
+
+    const newAlbum = {
+      id,
+      title: albumTitle,
+      artistName,
+      imageUrl: image,
+      price,
+      songList: songList,
+      releaseYear,
+      category,
+      inventory,
+    }
+
+    const newProduct = await Product.upsert(newAlbum, {returning: true})
+
+    res.json(newProduct[0].dataValues)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:productId', async (req, res, next) => {
+  try {
+    await Product.destroy({
+      where: {
+        id: {[Op.eq]: req.params.productId},
+      },
+    })
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }

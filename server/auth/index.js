@@ -13,6 +13,8 @@ router.post('/login', async (req, res, next) => {
       res.status(401).send('Wrong email and/or password')
     } else {
       req.login(user, (err) => (err ? next(err) : res.json(user)))
+
+      req.session.isAdmin = true
     }
   } catch (err) {
     next(err)
