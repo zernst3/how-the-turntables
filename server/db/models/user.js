@@ -52,6 +52,10 @@ const User = db.define('user', {
     defaultValue:
       'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
   },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 })
 
 module.exports = User
