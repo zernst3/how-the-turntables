@@ -1,6 +1,5 @@
 /* eslint-disable radix */
 import axios from 'axios'
-import history from '../history'
 import store from './index'
 import Cookie from 'js-cookie'
 

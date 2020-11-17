@@ -25,8 +25,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/:id', async (req, res, next) => {
   try {
-    // req.body.quantity should contain the quantity of the item
-
     let product = await Product.findByPk(parseInt(req.params.id))
     product = product.dataValues
     product.OrderItem = {}
@@ -97,7 +95,6 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-// Maybe rework this into an instance method?
 const findUserCart = async (id) => {
   // Searches for user information based on currently logged-in user, and includes their cart
 
