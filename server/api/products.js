@@ -61,7 +61,7 @@ router.post('/', isAdmin, async (req, res, next) => {
   }
 })
 
-router.delete('/:productId', async (req, res, next) => {
+router.delete('/:productId', isAdmin, async (req, res, next) => {
   try {
     await Product.destroy({
       where: {
