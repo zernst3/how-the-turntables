@@ -80,6 +80,7 @@ const usersForPostico = [
     googleId: 'agne.urbaityte',
     imageUrl:
       'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
+    isAdmin: true,
   },
   {
     firstName: 'Bobby',
@@ -93,6 +94,7 @@ const usersForPostico = [
     googleId: 'bobby.scar',
     imageUrl:
       'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
+    isAdmin: false,
   },
   {
     firstName: 'Joseph',
@@ -106,6 +108,7 @@ const usersForPostico = [
     googleId: 'Mango',
     imageUrl:
       'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
+    isAdmin: false,
   },
 ]
 
