@@ -291,7 +291,7 @@ for (let i = 0; i < 100; i++) {
     firstName: chance.first(),
     lastName: chance.last(),
     userName: chance.word({syllables: 4}),
-    email: chance.email({domain: 'gmail.com'}),
+    email: (i).toString() + chance.email({domain: 'gmail.com'}),
     password: chance.string(),
   })
 }
