@@ -11,7 +11,7 @@ export class Navbar extends React.Component {
   }
 
   render() {
-    const {handleClick, isLoggedIn, cart} = this.props
+    const {handleClick, isLoggedIn, cart, isAdmin} = this.props
 
     let total = 0
 
@@ -29,6 +29,7 @@ export class Navbar extends React.Component {
         <nav>
           {isLoggedIn ? (
             <div>
+              {isAdmin && <Link to="/admin">Administration</Link>}
               {/* The navbar will show these links after you log in */}
               <a href="#" onClick={handleClick}>
                 Logout
@@ -57,6 +58,7 @@ export class Navbar extends React.Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin,
     cart: state.cart,
   }
 }

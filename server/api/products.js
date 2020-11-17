@@ -2,6 +2,7 @@ const router = require('express').Router()
 const Sequelize = require('sequelize')
 const {Product} = require('../db/models')
 const Op = Sequelize.Op
+const {isAdmin} = require('../auth/middlewares')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -26,7 +27,7 @@ router.get('/:productId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const {
       albumTitle,
