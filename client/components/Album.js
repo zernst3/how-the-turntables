@@ -25,7 +25,12 @@ const Album = ({
         <h3>Price: ${(price / 100).toFixed(2)}</h3>
       </Link>
       {!adminView && (
-        <button type="submit" onClick={() => buy(id)}>
+        <button
+          type="submit"
+          onClick={() => {
+            buy(id)
+          }}
+        >
           Buy
         </button>
       )}
