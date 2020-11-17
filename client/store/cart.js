@@ -24,9 +24,7 @@ export const getInitialState = () => {
 /**
  * INITIAL STATE
  */
-export const defaultCart = {
-  products: getInitialState(),
-}
+export const defaultCart = getInitialState()
 
 /**
  * ACTION CREATORS
