@@ -4,31 +4,31 @@ const db = require('../db')
 const Address = db.define('Address', {
   fullName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   street: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   city: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   state: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   country: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   zipCode: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: false
   },
   addressType: {
-    type: Sequelize.ENUM('Shipping', 'Billing'),
-  },
+    type: Sequelize.ENUM('Shipping', 'Billing')
+  }
 })
 
 module.exports = Address

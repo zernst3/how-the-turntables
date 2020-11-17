@@ -52,13 +52,13 @@ export class SingleAlbum extends React.Component {
   } //render ende
 } //class ende
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    album: state.album,
+    album: state.album
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
     buy: (id) => dispatch(buy(id)),

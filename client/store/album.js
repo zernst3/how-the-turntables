@@ -2,13 +2,13 @@ import Axios from 'axios'
 
 const SET_ALBUM = 'SET_ALBUM'
 
-export const setAlbum = (album) => ({
+export const setAlbum = album => ({
   type: SET_ALBUM,
-  album,
+  album
 })
 
-export const fetchAlbum = (id) => {
-  return async (dispatch) => {
+export const fetchAlbum = id => {
+  return async dispatch => {
     try {
       const {data} = await Axios.get(`/api/products/${id}`)
       dispatch(setAlbum(data))

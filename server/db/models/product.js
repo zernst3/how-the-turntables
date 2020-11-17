@@ -10,7 +10,7 @@ const Product = db.define('product', {
     },
   },
   songList: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
   },
   artistName: {
     type: Sequelize.STRING,
@@ -24,7 +24,7 @@ const Product = db.define('product', {
     allowNull: false,
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue:
       'https://i.pinimg.com/originals/f1/01/40/f101408a505673ae915f3afcc6588183.png',
   },

@@ -9,7 +9,7 @@ const CartItem = ({
   price,
   quantity,
   removeItem,
-  updateQuantity,
+  updateQuantity
 }) => {
   return (
     <div>
@@ -21,12 +21,12 @@ const CartItem = ({
       <img src={imageUrl} />
       <h3>
         Price: ${(price / 100).toFixed(2)} - Total: $
-        {((price * quantity) / 100).toFixed(2)}
+        {(price * quantity / 100).toFixed(2)}
       </h3>
       <h3>Quantity:</h3>
 
       <select
-        onChange={(evt) => {
+        onChange={evt => {
           updateQuantity(id, evt.target.value)
         }}
       >

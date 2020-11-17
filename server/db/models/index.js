@@ -38,5 +38,5 @@ module.exports = {
   Order,
   OrderItem,
   Address,
-  CreditCard,
+  CreditCard
 }
