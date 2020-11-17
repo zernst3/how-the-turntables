@@ -1,0 +1,35 @@
+.allNewAlbums button,
+.singleAlbum button {
+  font-size: 1.1em;
+  width: 85px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 10px;
+  transition: transform 0.2s; /* Animation */
+}
+
+.allNewAlbums button img,
+.singleAlbum button img {
+  width: 100%;
+  height: auto;
+}
+
+.allNewAlbums button:hover,
+.singleAlbum button:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+#adminview button {
+  width: 40%;
+  background-color: blueviolet;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 2%;
+  font-size: larger;
+  transition-duration: 0.4s;
+}
+
+#adminview button:hover {
+  background-color: white;
+}

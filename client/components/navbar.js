@@ -23,7 +23,10 @@ export class Navbar extends React.Component {
     return (
       <div id="navbar-container">
         <Link to="/home">
-          <h1>How the Turntables</h1>
+          <h1>
+            <img src="https://images.vexels.com/media/users/3/158740/isolated/preview/db5bbd7bdc2adb79782183ee6b2c8089-record-star-vinyl-silhouette-by-vexels.png" />
+            How the Turntables
+          </h1>
         </Link>
         {/* <h1>How the Turntables</h1> */}
         <nav>
