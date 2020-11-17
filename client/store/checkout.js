@@ -33,10 +33,10 @@ export const getUserCheckout = () => async (dispatch) => {
 export const checkout = (checkoutData) => async (dispatch) => {
   try {
     await axios.post(`/api/checkout/`, {checkoutData})
-    dispatch(setUserCheckout(defaultUserCheckout))
   } catch (err) {
     console.log(err)
   }
+  dispatch(setUserCheckout(defaultUserCheckout))
 }
 
 /**

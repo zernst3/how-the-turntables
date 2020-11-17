@@ -14,7 +14,7 @@ const CartItem = ({
   return (
     <div>
       <h3>
-        <Link to="album/1">
+        <Link to={`/album/${id}`}>
           {title} - {artistName}
         </Link>
       </h3>
