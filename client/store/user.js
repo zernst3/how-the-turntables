@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {getCart, defaultCart, setCart} from './index'
 
 /**
  * ACTION TYPES
@@ -15,13 +16,13 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
+const getUser = (user) => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
  * THUNK CREATORS
  */
-export const me = () => async dispatch => {
+export const me = () => async (dispatch) => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
@@ -36,14 +37,14 @@ export const auth = (
   password,
   confirmPassword,
   method
-) => async dispatch => {
+) => async (dispatch) => {
   let res
   try {
     res = await axios.post(`/auth/${method}`, {
       username,
       email,
       password,
-      confirmPassword
+      confirmPassword,
     })
   } catch (authError) {
     return dispatch(getUser({error: authError}))
@@ -51,16 +52,18 @@ export const auth = (
 
   try {
     dispatch(getUser(res.data))
+    dispatch(getCart())
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
 }
 
-export const logout = () => async dispatch => {
+export const logout = () => async (dispatch) => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
+    dispatch(setCart(defaultCart))
     history.push('/login')
   } catch (err) {
     console.error(err)
@@ -70,7 +73,7 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user

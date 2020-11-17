@@ -11,7 +11,7 @@ const Album = ({
   releaseYear,
   category,
   price,
-  buy
+  adminView,
 }) => {
   return (
     <div className="Album" key={id}>
@@ -24,7 +24,11 @@ const Album = ({
         <h1>Category: {category}</h1>
         <h3>Price: ${(price / 100).toFixed(2)}</h3>
       </Link>
-      <button onClick={() => buy(id)}>Buy</button>
+      {!adminView && (
+        <button type="submit" onClick={() => buy(id)}>
+          Buy
+        </button>
+      )}
     </div>
   )
 }

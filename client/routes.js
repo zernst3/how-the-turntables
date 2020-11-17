@@ -1,17 +1,19 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Cart} from './components'
-import {me} from './store'
+import {Login, Signup, UserHome, Cart, Checkout} from './components'
+import {me, getCart} from './store'
 import AllNewAlbums from './components/AllNewAlbums'
 import SingleAlbum from './components/SingleAlbum'
+import AdminView from './components/AdminView'
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.getCart()
   }
 
   render() {
@@ -19,11 +21,15 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={AllNewAlbums} />
         <Route path="/album/:id" component={SingleAlbum} />
         <Route path="/cart" component={Cart} />
+        <Route path="/admin" component={AdminView} />
+        <Route path="/checkout" component={Checkout} />
+        <Redirect from="/" to="/home" />
       </Switch>
     )
   }
@@ -40,19 +46,21 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
-    loadInitialData() {
-      dispatch(me())
-    }
+    // loadInitialData() {
+    //   dispatch(me())
+    // },
+    loadInitialData: () => dispatch(me()),
+    getCart: () => dispatch(getCart()),
   }
 }
 
@@ -65,5 +73,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 }

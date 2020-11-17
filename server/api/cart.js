@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const router = require('express').Router()
 module.exports = router
 const {Order, Product, OrderItem} = require('../db/models')
@@ -10,6 +11,10 @@ router.get('/', async (req, res, next) => {
 
     if (!req.session.cart) {
       req.session.cart = {products: []}
+    }
+
+    if (!req.session.cart.products) {
+      req.session.cart.products = []
     }
 
     res.json(req.session.cart)
@@ -37,7 +42,7 @@ router.post('/:id', async (req, res, next) => {
         {
           productId: product.id,
           orderId: cart.id,
-          quantity: req.body.quantity
+          quantity: req.body.quantity,
         },
         {returning: true}
       )
@@ -76,13 +81,13 @@ router.delete('/:id', async (req, res, next) => {
       const item = await OrderItem.findOne({
         where: {
           productId: req.params.id,
-          orderId: cart.id
-        }
+          orderId: cart.id,
+        },
       })
 
       item.destroy()
     }
-    req.session.cart.products = req.session.cart.products.filter(item => {
+    req.session.cart.products = req.session.cart.products.filter((item) => {
       return item.id !== parseInt(req.params.id)
     })
 
@@ -93,22 +98,22 @@ router.delete('/:id', async (req, res, next) => {
 })
 
 // Maybe rework this into an instance method?
-const findUserCart = async id => {
+const findUserCart = async (id) => {
   // Searches for user information based on currently logged-in user, and includes their cart
 
   const cart = await Order.findOrCreate({
     where: {
       userId: parseInt(id),
-      status: 'Current Cart'
+      status: 'Current Cart',
     },
     defaults: {
       userId: parseInt(id),
-      status: 'Current Cart'
+      status: 'Current Cart',
     },
     include: {
       model: Product,
-      as: 'products'
-    }
+      as: 'products',
+    },
   })
 
   return cart[0].dataValues
