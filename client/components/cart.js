@@ -28,11 +28,11 @@ class Cart extends React.Component {
       <div>
         <h1>Your Cart:</h1>
         {this.props.cart.products && this.props.cart.products.length > 0 ? (
-          this.props.cart.products.map((item, idx) => {
+          this.props.cart.products.map((item) => {
             total = total + item.OrderItem.quantity * item.price
             return (
               <CartItem
-                key={idx}
+                key={item.id}
                 id={item.id}
                 title={item.title}
                 artistName={item.artistName}

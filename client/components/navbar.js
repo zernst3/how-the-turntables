@@ -11,7 +11,15 @@ export class Navbar extends React.Component {
   }
 
   render() {
-    const {handleClick, isLoggedIn, cart} = this.props
+    const {handleClick, isLoggedIn, cart, isAdmin} = this.props
+
+    let total = 0
+
+    cart.products &&
+      cart.products.map(
+        (product) => (total = total + product.OrderItem.quantity)
+      )
+
     return (
       <div id="navbar-container">
         <Link to="/home">
@@ -21,6 +29,7 @@ export class Navbar extends React.Component {
         <nav>
           {isLoggedIn ? (
             <div>
+              {isAdmin && <Link to="/admin">Administration</Link>}
               {/* The navbar will show these links after you log in */}
               <a href="#" onClick={handleClick}>
                 Logout
@@ -34,9 +43,7 @@ export class Navbar extends React.Component {
               {/* The navbar will show these links before you log in */}
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
-              <Link to="/cart">
-                Cart {cart.products && cart.products.length}
-              </Link>
+              <Link to="/cart">Cart {total}</Link>
             </div>
           )}
         </nav>
@@ -51,6 +58,7 @@ export class Navbar extends React.Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin,
     cart: state.cart,
   }
 }

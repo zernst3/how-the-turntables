@@ -8,6 +8,9 @@ import {Link} from 'react-router-dom'
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
     this.props.fetchNewAlbums()
+    //  const initState =this.props.getInitialState()
+    //  console.log(initState, 'INITSTATE')
+    //  this.props.setCart()
   }
 
   render() {

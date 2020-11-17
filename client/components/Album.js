@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {buy} from '../store/allNewAlbums'
 
 const Album = ({
   id,
@@ -11,6 +10,7 @@ const Album = ({
   releaseYear,
   category,
   price,
+  buy,
   adminView,
 }) => {
   return (
@@ -25,7 +25,12 @@ const Album = ({
         <h3>Price: ${(price / 100).toFixed(2)}</h3>
       </Link>
       {!adminView && (
-        <button type="submit" onClick={() => buy(id)}>
+        <button
+          type="submit"
+          onClick={() => {
+            buy(id)
+          }}
+        >
           Buy
         </button>
       )}

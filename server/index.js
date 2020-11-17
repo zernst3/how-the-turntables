@@ -27,6 +27,8 @@ if (process.env.NODE_ENV === 'test') {
  * Node process on process.env
  */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
+
+// Changes environment variables to use nodemailer, which emails the customer upon checkout
 if (process.env.NODE_ENV !== 'production') require('../emailSecrets')
 
 // passport registration
