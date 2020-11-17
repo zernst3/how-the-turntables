@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {removeItemFromCart, updateQuantity} from '../store'
+import {getCart, removeItemFromCart, updateQuantity} from '../store'
 import {Link} from 'react-router-dom'
 import CartItem from './cart-item'
 
