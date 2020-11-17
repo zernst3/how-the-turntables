@@ -6,6 +6,7 @@ import {Login, Signup, UserHome, Cart, Checkout} from './components'
 import {me, getCart} from './store'
 import AllNewAlbums from './components/AllNewAlbums'
 import SingleAlbum from './components/SingleAlbum'
+import AdminViewProducts from './components/AdminViewProducts'
 import AdminView from './components/AdminView'
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ class Routes extends Component {
         {isAdmin && (
           <Switch>
             <Route path="/admin" component={AdminView} />
+            <Route path="/adminproducts" component={AdminViewProducts} />
           </Switch>
         )}
         <Redirect from="/" to="/home" />
