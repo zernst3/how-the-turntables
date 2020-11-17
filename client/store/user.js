@@ -46,16 +46,11 @@ export const auth = (
       password,
       confirmPassword,
     })
-  } catch (authError) {
-    return dispatch(getUser({error: authError}))
-  }
-
-  try {
     dispatch(getUser(res.data))
     dispatch(getCart())
     history.push('/home')
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr)
+  } catch (authError) {
+    return dispatch(getUser({error: authError}))
   }
 }
 

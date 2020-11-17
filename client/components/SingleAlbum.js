@@ -1,7 +1,7 @@
 import React from 'react'
-import {fetchAlbum, buy} from '../store/album'
+import {fetchAlbum} from '../store/album'
 import {connect} from 'react-redux'
-
+import {buy} from '../store/cart'
 export class SingleAlbum extends React.Component {
   componentDidMount() {
     this.props.fetchAlbum(this.props.match.params.id)
@@ -16,6 +16,7 @@ export class SingleAlbum extends React.Component {
       releaseYear,
       category,
       price,
+      adminView,
     } = this.props.album
 
     const name = title
@@ -35,7 +36,16 @@ export class SingleAlbum extends React.Component {
         <h2>Genre: {category}</h2>
         <h3>Released: {releaseYear}</h3>
         <h1>Price: ${price}</h1>
-        <button onClick={buy}>Buy</button>
+        {!adminView && (
+          <button
+            type="submit"
+            onClick={() => {
+              this.props.buy(id)
+            }}
+          >
+            Buy
+          </button>
+        )}
         <h2 />
       </div>
     ) //return ende
@@ -51,6 +61,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
+    buy: (id) => dispatch(buy(id)),
   }
 }
 
