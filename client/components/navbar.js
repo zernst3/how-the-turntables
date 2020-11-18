@@ -16,10 +16,9 @@ export class Navbar extends React.Component {
     let total = 0
 
     cart.products &&
-      cart.products.map(
-        (product) =>
-          (total = parseInt(total) + parseInt(product.OrderItem.quantity))
-      )
+      cart.products.map((product) => {
+        total = total + parseInt(product.OrderItem.quantity)
+      })
 
     return (
       <div id="navbar-container">
@@ -38,9 +37,7 @@ export class Navbar extends React.Component {
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
-              <Link to="/cart">
-                Cart {cart.products && cart.products.length}
-              </Link>
+              <Link to="/cart">Cart {total}</Link>
             </div>
           ) : (
             <div>
