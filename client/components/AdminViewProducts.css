@@ -1,0 +1,18 @@
+.albumsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.allAlbums h1 {
+  text-align: center;
+  color: black;
+}
+
+.form {
+  background-color: rgb(214, 174, 139);
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bolder;
+}

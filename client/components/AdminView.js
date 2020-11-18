@@ -1,16 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './admin.css'
+import './Button.css'
+import './AdminView.css'
 
 const AdminView = () => {
   return (
     <div id="adminview">
       <Link to="/adminproducts">
-        <button>Products</button>
+        <button type="submit">Products</button>
       </Link>
-      <button>Users</button>
-      <button>Sales Reports</button>
-      <button>Stock</button>
+      <button type="button">Users</button>
+      <button type="button">Sales Reports</button>
+      <button type="button">Inventory Management</button>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 #navbar-container {
-  background-color: black;
+  background-color: rgba(196, 118, 118, 0.9);
   color: white;
   padding: 0px 15px;
   display: flex;
@@ -28,4 +28,10 @@
 
 #navbar-container nav a {
   font-size: 1.1em;
+}
+
+#navbar-container img {
+  height: 35px;
+  width: auto;
+  margin-right: 10px;
 }

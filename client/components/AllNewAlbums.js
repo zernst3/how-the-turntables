@@ -4,6 +4,7 @@ import Album from './Album'
 import {fetchNewAlbums} from '../store/allNewAlbums'
 import {buy} from '../store'
 import {Link} from 'react-router-dom'
+import './AllNewAlbums.css'
 
 export class AllNewAlbums extends React.Component {
   componentDidMount() {
@@ -17,6 +18,18 @@ export class AllNewAlbums extends React.Component {
     if (!this.props.albums) {
       return <div className="waiting">Loading New Albums...</div>
     }
+
+    const colors = [
+      'd14345',
+      'e8df65',
+      '178190',
+      'dd9b54',
+      '437b6d',
+      'e97685',
+      '555650',
+      'dacbb0',
+      '905a80',
+    ]
 
     return (
       <div className="allNewAlbums">
@@ -33,6 +46,7 @@ export class AllNewAlbums extends React.Component {
               releaseYear={album.releaseYear}
               category={album.category}
               buy={this.props.buy}
+              color={colors[Math.floor(Math.random() * colors.length)]}
             />
           )
         })}

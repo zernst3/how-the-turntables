@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import './Album.css'
+import './Button.css'
 
 const Album = ({
   id,
@@ -12,15 +14,14 @@ const Album = ({
   price,
   buy,
   adminView,
+  color,
 }) => {
   return (
-    <div className="Album" key={id}>
+    <div style={{backgroundColor: `#${color}`}} className="Album" key={id}>
       <Link to={`/album/${id}`}>
         <h2>{band}</h2>
         <h3>Album: {name}</h3>
         <img src={imageUrl} />
-        <h4>Songs: {songList}</h4>
-        <h4>Year: {releaseYear}</h4>
         <h1>Category: {category}</h1>
         <h3>Price: ${(price / 100).toFixed(2)}</h3>
       </Link>
@@ -31,7 +32,7 @@ const Album = ({
             buy(id)
           }}
         >
-          Buy
+          <img src="/buy.jpg" />
         </button>
       )}
     </div>

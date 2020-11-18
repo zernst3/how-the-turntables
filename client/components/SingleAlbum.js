@@ -2,6 +2,9 @@ import React from 'react'
 import {fetchAlbum} from '../store/album'
 import {connect} from 'react-redux'
 import {buy} from '../store/cart'
+import './SingleAlbum.css'
+import './Button.css'
+
 export class SingleAlbum extends React.Component {
   componentDidMount() {
     this.props.fetchAlbum(this.props.match.params.id)
@@ -27,38 +30,39 @@ export class SingleAlbum extends React.Component {
     }
     return (
       <div className="singleAlbum" key={id}>
-        <h1>SINGLE PAGE VIEW</h1>
-        <h4>Id: {id}</h4>
-        <h3>Artist: {band}</h3>
-        <h2>Album: {name}</h2>
         <img src={imageUrl} />
-        <h4>Tracklist: {songList}</h4>
-        <h2>Genre: {category}</h2>
-        <h3>Released: {releaseYear}</h3>
-        <h1>Price: ${price}</h1>
-        {!adminView && (
-          <button
-            type="submit"
-            onClick={() => {
-              this.props.buy(id)
-            }}
-          >
-            Buy
-          </button>
-        )}
-        <h2 />
+        <div>
+          <h1>Album: {name}</h1>
+          <h3>Artist: {band}</h3>
+
+          <h4>Tracklist: {songList}</h4>
+          <h3>Genre: {category}</h3>
+          <h3>Released: {releaseYear}</h3>
+          <h3>Price: ${(price / 100).toFixed(2)}</h3>
+          {!adminView && (
+            <button
+              type="submit"
+              onClick={() => {
+                this.props.buy(id)
+              }}
+            >
+              <img src="/buy.jpg" />
+            </button>
+          )}
+          <h2 />
+        </div>
       </div>
     ) //return ende
   } //render ende
 } //class ende
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    album: state.album
+    album: state.album,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
     buy: (id) => dispatch(buy(id)),
