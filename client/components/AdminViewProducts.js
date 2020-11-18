@@ -4,6 +4,8 @@ import Album from './Album'
 import {fetchNewAlbums, thunkToDeleteAlbum} from '../store/allNewAlbums'
 import ConnectedAdminNewAlbum from './admin-new-album'
 import ConnectedAdminUpdateAlbum from './admin-update-album'
+import './AdminViewProducts.css'
+import './Button.css'
 
 export class AdminViewProducts extends React.Component {
   constructor() {
@@ -34,15 +36,23 @@ export class AdminViewProducts extends React.Component {
   }
 
   render() {
+    const colors = [
+      'd14345',
+      'e8df65',
+      '178190',
+      'dd9b54',
+      '437b6d',
+      'e97685',
+      '555650',
+      'dacbb0',
+      '905a80',
+    ]
+
     return (
       <div className="allAlbums">
         <h1>All Albums</h1>
         <div id="newAlbumButton">
-          <button
-            type="button"
-            id="add-album"
-            onClick={() => this.handleClick('showAddForm')}
-          >
+          <button type="button" onClick={() => this.handleClick('showAddForm')}>
             Add Album
           </button>
           {this.state.showAddForm ? (
@@ -68,6 +78,7 @@ export class AdminViewProducts extends React.Component {
                   releaseYear={album.releaseYear}
                   category={album.category}
                   adminView={true}
+                  color={colors[Math.floor(Math.random() * colors.length)]}
                 />
 
                 <div id="editAlbumButton">
@@ -87,14 +98,16 @@ export class AdminViewProducts extends React.Component {
                   ) : null}
                 </div>
 
-                <button
-                  type="button"
-                  id="delete"
-                  name="deleteAlbum"
-                  onClick={() => this.handleDelete(album.id)}
-                >
-                  Delete
-                </button>
+                <div id="deleteAlbumButton">
+                  <button
+                    type="button"
+                    id="delete"
+                    name="deleteAlbum"
+                    onClick={() => this.handleDelete(album.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             )
           })}

@@ -22,14 +22,47 @@
 
 #adminview button {
   width: 40%;
-  background-color: blueviolet;
+  background-color: rgba(196, 118, 118, 0.9);
+  border: white;
   border-radius: 8px;
-  margin: 10px;
+  margin: 20px;
   padding: 2%;
   font-size: larger;
   transition-duration: 0.4s;
 }
 
-#adminview button:hover {
+#adminview button:hover,
+#newAlbumButton button:hover,
+#editAlbumButton button:hover {
   background-color: white;
+  cursor: pointer;
+}
+
+#newAlbumButton button {
+  width: 100px;
+  height: 80px;
+  background-color: rgba(196, 118, 118, 0.9);
+  border: white;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 2%;
+  justify-content: center;
+  font-weight: bolder;
+}
+
+#editAlbumButton button {
+  width: 60px;
+  height: 50px;
+  background-color: rgba(196, 118, 118, 0.9);
+  border: white;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 2%;
+  justify-content: center;
+}
+
+#deleteAlbumButton button {
+  background-color: rgb(63, 62, 62);
+  color: white;
+  margin-left: 2;
 }

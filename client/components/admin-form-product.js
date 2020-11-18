@@ -1,4 +1,5 @@
 import React from 'react'
+import './AdminViewProducts.css'
 
 const AdminFormProduct = (props) => {
   return (
