@@ -5,6 +5,7 @@ import {getUserCheckout, checkout, setCart, defaultCart} from '../store'
 import {Link} from 'react-router-dom'
 import './checkout.css'
 import CheckoutForm from './checkout-form'
+import './Checkout.css'
 
 /**
  * COMPONENT
@@ -114,66 +115,73 @@ class Checkout extends React.Component {
         this.props.userCheckout.orders[0].products) ||
       undefined
     return (
-      <div id="checkout">
-        <h1>Checkout:</h1>
+      <div id="checkoutContainer">
+        <div id="checkout">
+          <h1>Checkout:</h1>
 
-        {this.state.orderCompleted ? (
-          <h1>Thank you for your order</h1>
-        ) : !this.state.orderCompleted && products && products.length > 0 ? (
-          <React.Fragment>
-            <table>
-              <thead>
-                <tr>
-                  <td>Item</td>
-                  <td>Price</td>
-                  <td>Quantity</td>
-                  <td>Item Total</td>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((item) => {
-                  return (
-                    <React.Fragment key={item.id}>
-                      <tr>
-                        <td>
-                          <Link to={`/album/${item.id}`}>{item.title}</Link>
-                        </td>
-                        <td>${(item.price / 100).toFixed(2)}</td>
-                        <td>{item.OrderItem.quantity}</td>
-                        <td>
-                          $
-                          {(
-                            (item.OrderItem.quantity * item.price) /
-                            100
-                          ).toFixed(2)}
-                        </td>
-                      </tr>
-                    </React.Fragment>
-                  )
-                })}
-              </tbody>
-            </table>
-            <div id="total">
-              <strong>Total:</strong> ${(this.state.total / 100).toFixed(2)}
-            </div>
-            <CheckoutForm
-              email={this.state.email || ''}
-              creditCards={this.state.creditCards || []}
-              selectedCreditCard={this.state.selectedCreditCard || {}}
-              addresses={this.state.addresses || []}
-              selectedBillingAddress={this.state.selectedBillingAddress || {}}
-              selectedShippingAddress={this.state.selectedShippingAddress || {}}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-            />
-          </React.Fragment>
-        ) : !this.state.orderCompleted && products && products.length === 0 ? (
-          <h1>
-            <Link to="/home">Your cart is empty, continue shopping</Link>
-          </h1>
-        ) : (
-          <h1>Loading...</h1>
-        )}
+          {this.state.orderCompleted ? (
+            <h1>Thank you for your order</h1>
+          ) : !this.state.orderCompleted && products && products.length > 0 ? (
+            <React.Fragment>
+              <table>
+                <thead>
+                  <tr>
+                    <td>Item</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Item Total</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((item, idx) => {
+                    return (
+                      <React.Fragment key={item.id}>
+                        <tr>
+                          <td>
+                            {idx + 1}:{' '}
+                            <Link to={`/album/${item.id}`}>{item.title}</Link>
+                          </td>
+                          <td>${(item.price / 100).toFixed(2)}</td>
+                          <td>{item.OrderItem.quantity}</td>
+                          <td>
+                            $
+                            {(
+                              (item.OrderItem.quantity * item.price) /
+                              100
+                            ).toFixed(2)}
+                          </td>
+                        </tr>
+                      </React.Fragment>
+                    )
+                  })}
+                </tbody>
+              </table>
+              <div id="total">
+                <strong>Total:</strong> ${(this.state.total / 100).toFixed(2)}
+              </div>
+              <CheckoutForm
+                email={this.state.email || ''}
+                creditCards={this.state.creditCards || []}
+                selectedCreditCard={this.state.selectedCreditCard || {}}
+                addresses={this.state.addresses || []}
+                selectedBillingAddress={this.state.selectedBillingAddress || {}}
+                selectedShippingAddress={
+                  this.state.selectedShippingAddress || {}
+                }
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            </React.Fragment>
+          ) : !this.state.orderCompleted &&
+            products &&
+            products.length === 0 ? (
+            <h1>
+              <Link to="/home">Your cart is empty, continue shopping</Link>
+            </h1>
+          ) : (
+            <h1>Loading...</h1>
+          )}
+        </div>
       </div>
     )
   }

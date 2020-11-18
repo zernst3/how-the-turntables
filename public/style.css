@@ -8,6 +8,7 @@ body {
   margin: 0px;
   background-image: url(https://images.unsplash.com/photo-1522173096622-763cc9d35a3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
   background-size: 100vw;
+  background-attachment: fixed;
 }
 
 a {

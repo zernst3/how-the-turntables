@@ -17,7 +17,8 @@ export class Navbar extends React.Component {
 
     cart.products &&
       cart.products.map(
-        (product) => (total = total + product.OrderItem.quantity)
+        (product) =>
+          (total = parseInt(total) + parseInt(product.OrderItem.quantity))
       )
 
     return (

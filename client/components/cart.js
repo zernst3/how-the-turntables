@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {getCart, removeItemFromCart, updateQuantity} from '../store'
 import {Link} from 'react-router-dom'
 import CartItem from './cart-item'
+import './AllNewAlbums.css'
+import './Cart.css'
 
 /**
  * COMPONENT
@@ -25,7 +27,7 @@ class Cart extends React.Component {
   render() {
     let total = 0
     return (
-      <div>
+      <div className="allNewAlbums cartContainer">
         <h1>Your Cart:</h1>
         {this.props.cart.products && this.props.cart.products.length > 0 ? (
           this.props.cart.products.map((item) => {
@@ -50,8 +52,12 @@ class Cart extends React.Component {
         ) : (
           <h1>Loading...</h1>
         )}
-        <div>Total: ${(total / 100).toFixed(2)}</div>
-        <Link to="/checkout">Checkout</Link>
+        <div>
+          <p className="total">Total: ${(total / 100).toFixed(2)}</p>
+          <p className="checkoutButton">
+            <Link to="/checkout">Checkout</Link>
+          </p>
+        </div>
       </div>
     )
   }
