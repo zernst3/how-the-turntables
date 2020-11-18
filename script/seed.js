@@ -285,13 +285,19 @@ for (let i = 0; i < 10; i++) {
 }
 
 const usersForPostico = []
+usersForPostico.push({
+  userName: 'admin',
+  email: 'admin@howtheturntables.com',
+  password: 'admin123',
+  isAdmin: true,
+})
 
 for (let i = 0; i < 100; i++) {
   usersForPostico.push({
     firstName: chance.first(),
     lastName: chance.last(),
     userName: chance.word({syllables: 4}),
-    email: (i).toString() + chance.email({domain: 'gmail.com'}),
+    email: i.toString() + chance.email({domain: 'gmail.com'}),
     password: chance.string(),
   })
 }
