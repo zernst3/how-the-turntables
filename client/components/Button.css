@@ -1,5 +1,8 @@
 .allNewAlbums button,
-.singleAlbum button {
+.singleAlbum button,
+.cartItem button,
+#checkout-form button,
+.checkoutButton {
   font-size: 1.1em;
   width: 85px;
   padding: 5px;
@@ -9,13 +12,17 @@
 }
 
 .allNewAlbums button img,
-.singleAlbum button img {
+.singleAlbum button img,
+.cartItem button img {
   width: 100%;
   height: auto;
 }
 
 .allNewAlbums button:hover,
-.singleAlbum button:hover {
+.singleAlbum button:hover,
+.cartItem button:hover,
+#checkout-form button:hover,
+.checkoutButton:hover {
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -32,4 +39,16 @@
 
 #adminview button:hover {
   background-color: white;
+}
+
+.checkoutButton {
+  text-align: center;
+  width: 110px;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 10px;
+  background: white;
+}
+
+#checkout-form button {
 }
