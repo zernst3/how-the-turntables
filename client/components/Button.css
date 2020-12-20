@@ -23,7 +23,7 @@
 .cartItem button:hover,
 #checkout-form button:hover,
 .checkoutButton:hover {
-  transform: scale(1.2);
+  transform: scale(1.02);
   cursor: pointer;
 }
 
